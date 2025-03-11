@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="yMA2ezoLUVQGUPMhuxDn" name="Pagina-1">
-        <mxGraphModel dx="1314" dy="449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1290" dy="427" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -178,6 +178,9 @@
                 <mxCell id="41" value="Installare SSL/OpenSSL" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="200" y="360" width="120" height="40" as="geometry"/>
                 </mxCell>
+                <mxCell id="70" style="edgeStyle=none;html=1;" edge="1" parent="1" source="42" target="69">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="42" value="Installare MySQL" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="200" y="420" width="120" height="40" as="geometry"/>
                 </mxCell>
@@ -243,8 +246,11 @@
                 <mxCell id="59" value="Creare UML di componenti, stato, sequenza" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-120" y="480" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="67" value="Installare server RADIUS" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="67" value="Installare client RADIUS" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="40" y="420" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="Installare server RADIUS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="480" width="120" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
