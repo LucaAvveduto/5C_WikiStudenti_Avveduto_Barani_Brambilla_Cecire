@@ -57,35 +57,35 @@
 	<section class="section">
 		<div class="columns">
 			<div class="column is-one-third">
+				<div class="tabs is-boxed">
+					<ul>
+						<li class="is-active">
+							<a>
+								<span class="icon is-small">
+									<i class="fa-solid fa-file-pen"></i>
+								</span>
+								<span>Scrittore</span>
+							</a>
+						</li>
+						<li>
+							<a>
+								<span class="icon is-small">
+									<i class="fa-solid fa-user-pen"></i>
+								</span>
+								<span>Moderatore</span>
+							</a>
+						</li>
+						<li>
+							<a>
+								<span class="icon is-small">
+									<i class="fa-solid fa-user-tie"></i>
+								</span>
+								<span>Amministratore</span>
+							</a>
+						</li>
+					</ul>
+				</div>
 				<aside class="menu">
-					<div class="tabs is-boxed">
-						<ul>
-							<li class="is-active">
-								<a>
-									<span class="icon is-small">
-										<i class="fa-solid fa-file-pen"></i>
-									</span>
-									<span>Scrittore</span>
-								</a>
-							</li>
-							<li>
-								<a>
-									<span class="icon is-small">
-										<i class="fa-solid fa-user-pen"></i>
-									</span>
-									<span>Moderatore</span>
-								</a>
-							</li>
-							<li>
-								<a>
-									<span class="icon is-small">
-										<i class="fa-solid fa-user-tie"></i>
-									</span>
-									<span>Amministratore</span>
-								</a>
-							</li>
-						</ul>
-					</div>
 					<div class="columns">
 						<div class="column is-four-fifths">
 							<p class="control has-icons-left has-icons-right">
@@ -98,6 +98,11 @@
 								</span>
 								</span>
 							</p>
+							<p class="menu-label">Articoli</p>
+							<ul class="menu-list">
+								<li><a>Articolo 1</a></li>
+								<li><a>Articolo 2</a></li>
+							</ul>
 						</div>
 						<div class="column">
 							<button class="button is-link">
@@ -108,23 +113,70 @@
 							</button>
 						</div>
 					</div>
-					<p class="menu-label">Articoli</p>
-					<ul class="menu-list">
-						<li><a>Dashboard</a></li>
-						<li><a>Customers</a></li>
-					</ul>
+					<div class="columns">
+						<div class="column is-four-fifths">
+							<p class="control has-icons-left has-icons-right">
+								<input class="input" type="text" placeholder="Cerca bozza...">
+								<span class="icon is-left">
+									<i class="fas fa-search"></i>
+								</span>
+								<span class="icon is-right" id="cancelSearchIcon">
+									<i class="fa-solid fa-xmark"></i>
+								</span>
+								</span>
+							</p>
+							<p class="menu-label">Bozze</p>
+							<ul class="menu-list">
+								<li><a>Bozza 1</a></li>
+								<li><a>Bozza 2</a></li>
+							</ul>
+						</div>
+						<div class="column">
+							<button class="button is-link">
+								<span class="icon">
+									<i class="fa-solid fa-file-circle-question"></i>
+								</span>
+								<span>Crea</span>
+							</button>
+						</div>
+					</div>
 				</aside>
 			</div>
 			<div class="column">
 				<div class="content">
-					<h1 class="title">Articolo</h1>
-					<h2>Sezione 1</h2>
-					<p>Ciao mi chiamo lui</p>
-					<h2>Sezione 2</h2>
-					<p>Ciao mi chiamo tu</p>
-					<ol>
-						<li>a</li>
-					</ol>
+					<h1 class="title">Modifica articolo</h1>
+					<p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
+					<div class="field">
+						<div class="file">
+							<label class="file-label">
+								<input class="file-input" type="file" name="resume">
+								<span class="file-cta">
+									<span class="file-icon">
+										<i class="fa-solid fa-file-arrow-up"></i>
+									</span>
+									<span class="file-label">Carica file</span>
+								</span>
+							</label>
+						</div>
+					</div>
+
+					<div class="field">
+						<p class="control has-icons-left">
+							<input class="input" type="text" placeholder="Titolo">
+							<span class="icon is-left">
+								<i class="fa-solid fa-heading"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Abstract" rows="2"></textarea>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Contenuto" rows="20"></textarea>
+					</div>
+				</div>
+				<div class="content">
+					<h1>Versioni articolo</h1>
 				</div>
 			</div>
 		</div>
@@ -134,7 +186,7 @@
 		<div class="modal-background"></div>
 		<div class="modal-card">
 			<header class="modal-card-head">
-				<p class="modal-card-title">Inforamzioni personali</p>
+				<p class="modal-card-title">Informazioni personali</p>
 				<button class="delete" aria-label="close"></button>
 			</header>
 			<section class="modal-card-body">
