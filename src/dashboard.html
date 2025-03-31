@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>WikiStudenti - Home</title>
+	<title>Dashboard</title>
 	<link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css">
 	<script defer src="assets/fontawesome/js/all.min.js"></script>
 	<link rel="stylesheet" href="assets/style.css">
@@ -26,18 +26,26 @@
 
 		<div id="navbarExampleTransparentExample" class="navbar-menu">
 			<div class="navbar-start">
-				<a class="navbar-item title is-3" href="">WikiStudenti</a>
+				<a class="navbar-item title is-3" href="">Dashboard di nomeutente</a>
 			</div>
 
 			<div class="navbar-end">
 				<div class="navbar-item">
 					<div class="field is-grouped">
 						<p class="control">
-							<button class="button is-link js-modal-trigger" data-target="loginModal">
+							<button class="button is-light js-modal-trigger" data-target="personalInfoModal">
 								<span class="icon">
 									<i class="fa-solid fa-user"></i>
 								</span>
-								<span>Area personale</span>
+								<span>Informazioni personali</span>
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-danger">
+								<span class="icon">
+									<i class="fa-solid fa-door-open"></i>
+								</span>
+								<span>Esci</span>
 							</button>
 						</p>
 					</div>
@@ -48,18 +56,57 @@
 
 	<section class="section">
 		<div class="columns">
-			<div class="column is-one-fifth">
+			<div class="column is-one-third">
 				<aside class="menu">
-					<div class="container">
-						<p class="control has-icons-left has-icons-right">
-							<input class="input" type="text" placeholder="Cerca articolo...">
-							<span class="icon is-left">
-								<i class="fas fa-search"></i>
-							</span>
-							<span class="icon is-right" id="cancelSearchIcon">
-								<i class="fa-solid fa-xmark"></i>
-							</span>
-						</p>
+					<div class="tabs is-boxed">
+						<ul>
+							<li class="is-active">
+								<a>
+									<span class="icon is-small">
+										<i class="fa-solid fa-file-pen"></i>
+									</span>
+									<span>Scrittore</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="icon is-small">
+										<i class="fa-solid fa-user-pen"></i>
+									</span>
+									<span>Moderatore</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="icon is-small">
+										<i class="fa-solid fa-user-tie"></i>
+									</span>
+									<span>Amministratore</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="columns">
+						<div class="column is-four-fifths">
+							<p class="control has-icons-left has-icons-right">
+								<input class="input" type="text" placeholder="Cerca articolo...">
+								<span class="icon is-left">
+									<i class="fas fa-search"></i>
+								</span>
+								<span class="icon is-right" id="cancelSearchIcon">
+									<i class="fa-solid fa-xmark"></i>
+								</span>
+								</span>
+							</p>
+						</div>
+						<div class="column">
+							<button class="button is-link">
+								<span class="icon">
+									<i class="fa-solid fa-file-circle-plus"></i>
+								</span>
+								<span>Crea</span>
+							</button>
+						</div>
 					</div>
 					<p class="menu-label">Articoli</p>
 					<ul class="menu-list">
@@ -83,58 +130,11 @@
 		</div>
 	</section>
 
-	<div class="modal" id="loginModal">
+	<div class="modal" id="personalInfoModal">
 		<div class="modal-background"></div>
 		<div class="modal-card">
 			<header class="modal-card-head">
-				<p class="modal-card-title">Entra in area personale</p>
-				<button class="delete" aria-label="close"></button>
-			</header>
-			<section class="modal-card-body">
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email">
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="password" placeholder="Password">
-						<span class="icon is-small is-left">
-							<i class="fas fa-lock"></i>
-						</span>
-					</p>
-				</div>
-			</section>
-			<footer class="modal-card-foot buttons is-centered">
-				<div class="buttons">
-					<button class="button is-link">
-						<span class="icon">
-							<i class="fa-solid fa-right-to-bracket"></i>
-						</span>
-						<span>Login</span>
-					</button>
-					<button class="button is-link js-modal-trigger" data-target="registerModal">
-						<span class="icon">
-							<i class="fa-solid fa-user-plus"></i>
-						</span>
-						<span>Registrati</span>
-					</button>
-				</div>
-				<div class="container has-text-centered">
-					<p class="has-text-danger" id="registerError">Errore...</p>
-				</div>
-			</footer>
-		</div>
-	</div>
-
-	<div class="modal" id="registerModal">
-		<div class="modal-background"></div>
-		<div class="modal-card">
-			<header class="modal-card-head">
-				<p class="modal-card-title">Registrati</p>
+				<p class="modal-card-title">Inforamzioni personali</p>
 				<button class="delete" aria-label="close"></button>
 			</header>
 			<section class="modal-card-body">
@@ -172,7 +172,7 @@
 				</div>
 				<div class="field">
 					<p class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email">
+						<input class="input" type="email" placeholder="Email" disabled>
 						<span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
 						</span>
@@ -192,16 +192,16 @@
 						<label class="checkbox has-icons-left">
 							<input type="checkbox">
 							<span class="icon is-small is-left">
-								<i class="fa-solid fa-user-pen"></i>
+								<i class="fa-solid fa-file-pen"></i>
 							</span>
-							<span>Moderatore</span>
+							<span>Scrittore</span>
 						</label>
 						<label class="checkbox has-icons-left">
 							<input type="checkbox">
 							<span class="icon is-small is-left">
-								<i class="fa-solid fa-file-pen"></i>
+								<i class="fa-solid fa-user-pen"></i>
 							</span>
-							<span>Scrittore</span>
+							<span>Moderatore</span>
 						</label>
 					</div>
 				</div>
@@ -216,9 +216,9 @@
 					</button>
 					<button class="button is-link">
 						<span class="icon">
-							<i class="fa-solid fa-user-plus"></i>
+							<i class="fa-solid fa-floppy-disk"></i>
 						</span>
-						<span>Registrati</span>
+						<span>Salva</span>
 					</button>
 				</div>
 				<div class="container has-text-centered">
