@@ -1,4 +1,4 @@
-#cancelSearchIcon {
-    pointer-events: all;
-    cursor: pointer;
+.clickableIcon {
+    pointer-events: all !important;
+    cursor: pointer !important;
 }

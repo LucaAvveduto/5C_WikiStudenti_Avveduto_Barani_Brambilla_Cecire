@@ -50,16 +50,7 @@
 		<div class="columns">
 			<div class="column is-one-fifth">
 				<aside class="menu">
-					<div class="container">
-						<p class="control has-icons-left has-icons-right">
-							<input class="input" type="text" placeholder="Cerca articolo...">
-							<span class="icon is-left">
-								<i class="fas fa-search"></i>
-							</span>
-							<span class="icon is-right" id="cancelSearchIcon">
-								<i class="fa-solid fa-xmark"></i>
-							</span>
-						</p>
+					<div class="container" id="articleSearchbarContainer">
 					</div>
 					<p class="menu-label">Articoli</p>
 					<ul class="menu-list">
@@ -239,7 +230,7 @@
 		document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
 	</script>
 
-	<script src="index.js"></script>
+	<script type="module" src="index.js"></script>
 </body>
 
 </html>
