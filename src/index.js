@@ -1,20 +1,26 @@
 import { generatePubSub } from "./scripts/pubsub/pubsub.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
+import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 
 const pubsub = generatePubSub();
 
-const articleSearchbarContainer = document.getElementById("articleSearchbarContainer");
+const articleSidebarContainer = document.getElementById("articleSidebarContainer");
+const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
 
+articleSidebar.build("articleSidebar", "Articoli", {"ciao": "#ciao", "bene": "#b"}, "articleSearchbarContainer");
+articleSidebar.render();
+
+const articleSearchbarContainer = document.getElementById("articleSearchbarContainer");
 const articleSearchbar = generateSearchbar(articleSearchbarContainer, pubsub);
 
 articleSearchbar.build("articleSearchbar", "Cerca articolo...");
 articleSearchbar.render();
 
 pubsub.subscribe("articleSearchbar-onsearch", searchText => {
-    console.log(searchText)
+    articleSidebar.search(searchText);
 });
 pubsub.subscribe("articleSearchbar-oncancel", () => {
-    console.log("cancellato")
+    articleSidebar.reset();
 });
 
 // gestione modali di Bulma
