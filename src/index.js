@@ -1,8 +1,12 @@
 import { generatePubSub } from "./scripts/pubsub/pubsub.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
+import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 
 const pubsub = generatePubSub();
+
+const articleContainer = document.getElementById("articleContainer");
+generateNavigator(articleContainer);
 
 const articleSidebarContainer = document.getElementById("articleSidebarContainer");
 const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
