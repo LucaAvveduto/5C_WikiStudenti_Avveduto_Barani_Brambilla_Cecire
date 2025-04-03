@@ -10,9 +10,9 @@ const pageContainer = document.getElementById("pageContainer");
 generateNavigator(pageContainer);
 
 const tabsContainer = document.getElementById("tabsContainer");
-const articleSidebarContainer = document.getElementById("articleSidebarContainer");
+const sidebarContainer = document.getElementById("sidebarContainer");
 
-const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
+const articleSidebar = generateSidebar(sidebarContainer, pubsub);
 const tabs = generateTabs(tabsContainer, pubsub);
 
 articleSidebar.build("articleSidebar", "Articoli", {"Ciao": "#ciao"}, "articleSearchbarContainer");
