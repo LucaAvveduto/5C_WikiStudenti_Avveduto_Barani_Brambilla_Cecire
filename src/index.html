@@ -49,36 +49,16 @@
 
 	<section class="section">
 		<div class="columns">
-			<div class="column is-one-fifth">
-				<aside class="menu">
-					<div class="container">
-						<p class="control has-icons-left has-icons-right">
-							<input class="input" type="text" placeholder="Cerca articolo...">
-							<span class="icon is-left">
-								<i class="fas fa-search"></i>
-							</span>
-							<span class="icon is-right" id="cancelSearchIcon">
-								<i class="fa-solid fa-xmark"></i>
-							</span>
-						</p>
-					</div>
-					<p class="menu-label">Articoli</p>
-					<ul class="menu-list">
-						<li><a>Dashboard</a></li>
-						<li><a>Customers</a></li>
-					</ul>
-				</aside>
+			<div class="column is-one-fifth" id="articleSidebarContainer">
 			</div>
-			<div class="column">
-				<div class="content">
-					<h1 class="title">Articolo</h1>
-					<h2>Sezione 1</h2>
-					<p>Ciao mi chiamo lui</p>
-					<h2>Sezione 2</h2>
-					<p>Ciao mi chiamo tu</p>
-					<ol>
-						<li>a</li>
-					</ol>
+			<div class="column" id="articleContainer">
+				<div class="content page" id="home">
+					<h1 class="title">Home</h1>
+					<p>WikiStudenti è un portale creato per poter far accedere agli studenti...</p>
+				</div>
+				<div class="content page" id="ciao">
+					<h1 class="title">ciao</h1>
+					<p>WikiStudenti è un portale creato per poter far accedere agli studenti...</p>
 				</div>
 			</div>
 		</div>
@@ -184,7 +164,7 @@
 		}
 	</script>
 
-	<script src="index.js"></script>
+	<script type="module" src="index.js"></script>
 </body>
 
 </html>

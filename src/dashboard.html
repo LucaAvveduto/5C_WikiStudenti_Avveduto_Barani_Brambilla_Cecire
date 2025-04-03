@@ -57,93 +57,11 @@
 	<section class="section">
 		<div class="columns">
 			<div class="column is-one-third">
-				<div class="tabs is-boxed">
-					<ul>
-						<li class="is-active">
-							<a>
-								<span class="icon is-small">
-									<i class="fa-solid fa-file-pen"></i>
-								</span>
-								<span>Scrittore</span>
-							</a>
-						</li>
-						<li>
-							<a>
-								<span class="icon is-small">
-									<i class="fa-solid fa-user-pen"></i>
-								</span>
-								<span>Moderatore</span>
-							</a>
-						</li>
-						<li>
-							<a>
-								<span class="icon is-small">
-									<i class="fa-solid fa-user-tie"></i>
-								</span>
-								<span>Amministratore</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<aside class="menu">
-					<div class="columns">
-						<div class="column is-four-fifths">
-							<p class="control has-icons-left has-icons-right">
-								<input class="input" type="text" placeholder="Cerca articolo...">
-								<span class="icon is-left">
-									<i class="fas fa-search"></i>
-								</span>
-								<span class="icon is-right" id="cancelSearchIcon">
-									<i class="fa-solid fa-xmark"></i>
-								</span>
-								</span>
-							</p>
-							<p class="menu-label">Articoli</p>
-							<ul class="menu-list">
-								<li><a>Articolo 1</a></li>
-								<li><a>Articolo 2</a></li>
-							</ul>
-						</div>
-						<div class="column">
-							<button class="button is-link">
-								<span class="icon">
-									<i class="fa-solid fa-file-circle-plus"></i>
-								</span>
-								<span>Crea</span>
-							</button>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-four-fifths">
-							<p class="control has-icons-left has-icons-right">
-								<input class="input" type="text" placeholder="Cerca bozza...">
-								<span class="icon is-left">
-									<i class="fas fa-search"></i>
-								</span>
-								<span class="icon is-right" id="cancelSearchIcon">
-									<i class="fa-solid fa-xmark"></i>
-								</span>
-								</span>
-							</p>
-							<p class="menu-label">Bozze</p>
-							<ul class="menu-list">
-								<li><a>Bozza 1</a></li>
-								<li><a>Bozza 2</a></li>
-							</ul>
-						</div>
-						<div class="column">
-							<button class="button is-link">
-								<span class="icon">
-									<i class="fa-solid fa-file-circle-question"></i>
-								</span>
-								<span>Crea</span>
-							</button>
-						</div>
-					</div>
-				</aside>
+				<div class="column" id="tabsContainer"></div>
+				<div class="column" id="articleSidebarContainer"></div>
 			</div>
-			<div class="column">
-				<div class="content">
+			<div class="column" id="pageContainer">
+				<div class="content page" id="a">
 					<h1 class="title">Modifica articolo</h1>
 					<p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
 					<div class="field">
@@ -175,8 +93,56 @@
 						<textarea class="textarea" placeholder="Contenuto" rows="20"></textarea>
 					</div>
 				</div>
-				<div class="content">
+				<div class="content page" id="a">
 					<h1>Versioni articolo</h1>
+					<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+						<tbody>
+							<tr>
+								<th>ID versione</th><th>Visualizza</th><th>Azione</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>
+									<button class="button is-link">
+										<span class="icon">
+											<i class="fa-solid fa-up-right-from-square"></i>
+										</span>
+										<span>Apri</span>
+									</button>
+								</td>
+								<td>
+									<button class="button is-warning">
+										<span class="icon">
+											<i class="fa-solid fa-rotate-left"></i>
+										</span>
+										<span>Usa questa versione</span>
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>
+									<button class="button is-link">
+										<span class="icon">
+											<i class="fa-solid fa-up-right-from-square"></i>
+										</span>
+										<span>Apri</span>
+									</button>
+								</td>
+								<td><strong class="has-text-success">Versione corrente</strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="content page" id="a">
+					<h1>Dettaglio articolo</h1>
+					<button class="button is-link">
+						<span class="icon">
+							<i class="fa-solid fa-arrow-left"></i>
+						</span>
+						<span>Indietro</span>
+					</button>
+					<p>Dettagli...</p>
 				</div>
 			</div>
 		</div>
@@ -291,7 +257,7 @@
 		document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
 	</script>
 
-	<script src="index.js"></script>
+	<script type="module" src="dashboard.js"></script>
 </body>
 
 </html>
