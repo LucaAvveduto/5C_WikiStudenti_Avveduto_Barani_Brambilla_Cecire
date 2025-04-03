@@ -83,7 +83,7 @@
 						<button class="form-submit-btn" type="submit">Submit</button>
 					</div>
 					<div class="column">
-						<button class="form-submit-btn form-cancel-btn" type="submit">Cancel</button>
+						<button class="form-submit-btn form-cancel-btn" data-dismiss="loginModal">Cancel</button>
 					</div>
 				</div>
 			</form>
@@ -162,6 +162,13 @@
 				e.classList.add("darkbg");
 			});
 		}
+		document.querySelectorAll(".form-cancel-btn").forEach(e => {
+			e.onclick = () => {
+				console.log(e.id)
+				const node = e.closest(".modal");
+				node.style.display = "none";
+			}
+		});
 	</script>
 
 	<script type="module" src="index.js"></script>
