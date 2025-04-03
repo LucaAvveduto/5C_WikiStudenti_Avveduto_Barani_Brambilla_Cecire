@@ -42,11 +42,27 @@ const loginComponents = [
 const registerComponents = [
     [
         {
-            "id": "pws",
+            "id": "nome",
             "type": "text"
         },
         {
-            "id": "psw",
+            "id": "cognome",
+            "type": "text"
+        },
+        {
+            "id": "classe",
+            "type": "text"
+        },
+        {
+            "id": "anno_nascita",
+            "type": "text"
+        },
+        {
+            "id": "email",
+            "type": "email"
+        },
+        {
+            "id": "password",
             "type": "password"
         },
     ],
