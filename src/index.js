@@ -2,6 +2,7 @@ import { generatePubSub } from "./scripts/pubsub/pubsub.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
+import { navbar } from "./scripts/GUI/navbar/navbar.js";
 
 const pubsub = generatePubSub();
 
@@ -10,6 +11,10 @@ generateNavigator(articleContainer);
 
 const articleSidebarContainer = document.getElementById("articleSidebarContainer");
 const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
+
+const navbarEl = document.getElementById("navbar-container");
+const nav = navbar(navbarEl);
+nav.render();
 
 articleSidebar.build("articleSidebar", "Articoli", {"ciao": "#ciao", "bene": "#b"}, "articleSearchbarContainer");
 articleSidebar.render();

@@ -6,6 +6,14 @@
   background: linear-gradient(#212121, #212121) padding-box, linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box !important;
 }
 
+.showable {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
 #cancelSearchIcon {
     pointer-events: all;
     cursor: pointer;
@@ -17,7 +25,8 @@
 }
 
 .blur {
-    filter: blur(5px) !important;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .form-container {
@@ -121,10 +130,6 @@
   .form-container .form-cancel-btn:hover {
     background-color: rgb(219, 75, 75) !important;
     border-color: rgb(219, 75, 75) !important;
-  }
-
-  .modal {
-    filter: blur(0) !important;
   }
 
   .clickableIcon {

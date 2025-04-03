@@ -12,41 +12,7 @@
 </head>
 
 <body>
-	<nav class="navbar is-transparent">
-		<div class="navbar-brand">
-			<a class="navbar-item" href="#">
-				<img src="assets/favicon.ico" id="logo">
-			</a>
-			<div class="navbar-burger js-burger" data-target="navbarExampleTransparentExample">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-
-		<div id="navbarExampleTransparentExample" class="navbar-menu">
-			<div class="navbar-start">
-				<a class="navbar-item title is-3" href="">WikiStudenti</a>
-			</div>
-
-			<div class="navbar-end">
-				<div class="navbar-item">
-					<div class="field is-grouped">
-						<p class="control">
-							<button class="button is-link js-modal-trigger" id="personal" data-target="loginModal">
-								<span class="icon">
-									<i class="fa-solid fa-user"></i>
-								</span>
-								<span>Area personale</span>
-							</button>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-
+	<div id="navbar-container"></div>
 	<section class="section">
 		<div class="columns">
 			<div class="column is-one-fifth" id="articleSidebarContainer">
@@ -136,39 +102,38 @@
 	</footer>
 
 	<script>
-		const year = new Date().getFullYear();
-		document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
-		document.getElementById("personal").onclick = () => {
-			//document.body.classList.add("blur");
-		}	
-		document.querySelectorAll(".form-cancel-btn").forEach(e => {
-			e.onclick = () => {
-				document.body.classList.remove("blur");
+		document.addEventListener("DOMContentLoaded", () => {
+			const year = new Date().getFullYear();
+			document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
+			document.querySelectorAll(".form-cancel-btn").forEach(e => {
+				e.onclick = () => {
+					document.querySelectorAll(".modal").forEach(e => {
+						e.classList.add("blur");
+					});
+				}
+			});
+			const forms = document.querySelectorAll(".form-container");
+			const submitButtons = document.querySelectorAll(".form-submit-btn");
+			if (!document.querySelector("html[data-theme='dark']")) {
+				forms.forEach(e => {
+					e.classList.remove("darkbg");
+					e.classList.add("lightbg");
+				});
+				submitButtons.forEach(e => {
+					e.style.backgroundColor = "#fff";
+				});
+			} else {
+				forms.forEach(e => {
+					e.classList.remove("lightbg");
+					e.classList.add("darkbg");
+				});
 			}
-		});
-		const forms = document.querySelectorAll(".form-container");
-		const submitButtons = document.querySelectorAll(".form-submit-btn");
-		if(!document.querySelector("html[data-theme='dark']")) {
-			forms.forEach(e => {
-				e.classList.remove("darkbg");
-				e.classList.add("lightbg");
+			document.querySelectorAll(".form-cancel-btn").forEach(e => {
+				e.onclick = () => {
+					e.closest(".modal").classList.add("hidden");
+				}
 			});
-			submitButtons.forEach(e => {
-				e.style.backgroundColor = "#fff";
-			});
-		}else{
-			forms.forEach(e => {
-				e.classList.remove("lightbg");
-				e.classList.add("darkbg");
-			});
-		}
-		document.querySelectorAll(".form-cancel-btn").forEach(e => {
-			e.onclick = () => {
-				console.log(e.id)
-				const node = e.closest(".modal");
-				node.style.display = "none";
-			}
-		});
+		})
 	</script>
 
 	<script type="module" src="index.js"></script>
