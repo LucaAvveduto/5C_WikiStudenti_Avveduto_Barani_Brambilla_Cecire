@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="light">
+<html lang="it" data-theme="dark">
 
 <head>
 	<meta charset="UTF-8">
@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css">
 	<script defer src="assets/fontawesome/js/all.min.js"></script>
 	<link rel="stylesheet" href="assets/style.css">
+	<link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -33,7 +34,7 @@
 				<div class="navbar-item">
 					<div class="field is-grouped">
 						<p class="control">
-							<button class="button is-link js-modal-trigger" data-target="loginModal">
+							<button class="button is-link js-modal-trigger" id="personal" data-target="loginModal">
 								<span class="icon">
 									<i class="fa-solid fa-user"></i>
 								</span>
@@ -84,147 +85,67 @@
 	</section>
 
 	<div class="modal" id="loginModal">
-		<div class="modal-background"></div>
-		<div class="modal-card">
-			<header class="modal-card-head">
-				<p class="modal-card-title">Entra in area personale</p>
-				<button class="delete" aria-label="close"></button>
-			</header>
-			<section class="modal-card-body">
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email">
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
+		<div class="form-container">
+			<form class="form">
+				<div class="form-group">
+					<label for="email">Username</label>
+					<input type="text" id="username" name="username" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="password" placeholder="Password">
-						<span class="icon is-small is-left">
-							<i class="fas fa-lock"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="textarea">Password</label>
+					<input name="password" type="password" id="password" rows="10" cols="50" required="">
 				</div>
-			</section>
-			<footer class="modal-card-foot buttons is-centered">
-				<div class="buttons">
-					<button class="button is-link">
-						<span class="icon">
-							<i class="fa-solid fa-right-to-bracket"></i>
-						</span>
-						<span>Login</span>
-					</button>
-					<button class="button is-link js-modal-trigger" data-target="registerModal">
-						<span class="icon">
-							<i class="fa-solid fa-user-plus"></i>
-						</span>
-						<span>Registrati</span>
-					</button>
+				<a class="js-modal-trigger" data-target="registerModal">
+					<span>Vuoi diventare uno dei nostri?</span>
+				</a>
+				<div class="columns">
+					<div class="column">
+						<button class="form-submit-btn" type="submit">Submit</button>
+					</div>
+					<div class="column">
+						<button class="form-submit-btn form-cancel-btn" type="submit">Cancel</button>
+					</div>
 				</div>
-				<div class="container has-text-centered">
-					<p class="has-text-danger" id="registerError">Errore...</p>
-				</div>
-			</footer>
+			</form>
 		</div>
 	</div>
 
 	<div class="modal" id="registerModal">
-		<div class="modal-background"></div>
-		<div class="modal-card">
-			<header class="modal-card-head">
-				<p class="modal-card-title">Registrati</p>
-				<button class="delete" aria-label="close"></button>
-			</header>
-			<section class="modal-card-body">
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Nome">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-user"></i>
-						</span>
-					</p>
+		<div class="form-container">
+			<form class="form">
+				<div class="form-group">
+					<label for="name">Nome</label>
+					<input type="text" id="name" name="name" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Cognome">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-user"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="cognome">Cognome</label>
+					<input name="cognome" type="text" id="cognome" rows="10" cols="50" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Classe">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-chalkboard"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="class">Classe</label>
+					<input name="class" type="text" id="class" rows="10" cols="50" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="number" placeholder="Anno di nascita">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-calendar"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="birth">Anno di nascita</label>
+					<input name="birth" type="text" id="birth" rows="10" cols="50" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email">
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="mail">E-mail</label>
+					<input name="mail" type="mail" id="mail" rows="10" cols="50" required="">
 				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="password" placeholder="Password">
-						<span class="icon is-small is-left">
-							<i class="fas fa-lock"></i>
-						</span>
-					</p>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input name="password" type="password" id="password" rows="10" cols="50" required="">
 				</div>
-				<div class="field">
-					<p>Desidero essere:</p>
-					<div class="checkboxes">
-						<label class="checkbox has-icons-left">
-							<input type="checkbox">
-							<span class="icon is-small is-left">
-								<i class="fa-solid fa-user-pen"></i>
-							</span>
-							<span>Moderatore</span>
-						</label>
-						<label class="checkbox has-icons-left">
-							<input type="checkbox">
-							<span class="icon is-small is-left">
-								<i class="fa-solid fa-file-pen"></i>
-							</span>
-							<span>Scrittore</span>
-						</label>
+				<div class="columns">
+					<div class="column">
+						<button class="form-submit-btn" type="submit">Submit</button>
+					</div>
+					<div class="column">
+						<button class="form-submit-btn form-cancel-btn" type="submit">Cancel</button>
 					</div>
 				</div>
-			</section>
-			<footer class="modal-card-foot buttons is-centered">
-				<div class="buttons">
-					<button class="button is-danger">
-						<span class="icon">
-							<i class="fa-solid fa-xmark"></i>
-						</span>
-						<span>Annulla</span>
-					</button>
-					<button class="button is-link">
-						<span class="icon">
-							<i class="fa-solid fa-user-plus"></i>
-						</span>
-						<span>Registrati</span>
-					</button>
-				</div>
-				<div class="container has-text-centered">
-					<p class="has-text-danger" id="registerError">Errore...</p>
-				</div>
-			</footer>
+			</form>
 		</div>
 	</div>
 
@@ -237,6 +158,30 @@
 	<script>
 		const year = new Date().getFullYear();
 		document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
+		document.getElementById("personal").onclick = () => {
+			//document.body.classList.add("blur");
+		}	
+		document.querySelectorAll(".form-cancel-btn").forEach(e => {
+			e.onclick = () => {
+				document.body.classList.remove("blur");
+			}
+		});
+		const forms = document.querySelectorAll(".form-container");
+		const submitButtons = document.querySelectorAll(".form-submit-btn");
+		if(!document.querySelector("html[data-theme='dark']")) {
+			forms.forEach(e => {
+				e.classList.remove("darkbg");
+				e.classList.add("lightbg");
+			});
+			submitButtons.forEach(e => {
+				e.style.backgroundColor = "#fff";
+			});
+		}else{
+			forms.forEach(e => {
+				e.classList.remove("lightbg");
+				e.classList.add("darkbg");
+			});
+		}
 	</script>
 
 	<script src="index.js"></script>
