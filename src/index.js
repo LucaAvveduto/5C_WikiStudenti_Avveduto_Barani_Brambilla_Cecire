@@ -1,4 +1,31 @@
+import { generatePubSub } from "./scripts/pubsub/pubsub.js";
+import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
+import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
+import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 
+const pubsub = generatePubSub();
+
+const articleContainer = document.getElementById("articleContainer");
+generateNavigator(articleContainer);
+
+const articleSidebarContainer = document.getElementById("articleSidebarContainer");
+const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
+
+articleSidebar.build("articleSidebar", "Articoli", {"ciao": "#ciao", "bene": "#b"}, "articleSearchbarContainer");
+articleSidebar.render();
+
+const articleSearchbarContainer = document.getElementById("articleSearchbarContainer");
+const articleSearchbar = generateSearchbar(articleSearchbarContainer, pubsub);
+
+articleSearchbar.build("articleSearchbar", "Cerca articolo...");
+articleSearchbar.render();
+
+pubsub.subscribe("articleSearchbar-onsearch", searchText => {
+    articleSidebar.search(searchText);
+});
+pubsub.subscribe("articleSearchbar-oncancel", () => {
+    articleSidebar.reset();
+});
 
 // gestione modali di Bulma
 document.addEventListener("DOMContentLoaded", () => {
