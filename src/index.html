@@ -29,8 +29,8 @@
 			</div>
 		</div>
 	</section>
-
-	<div class="modal" id="loginModal">
+	<div id="modal-container" class="modal blur"></div>
+	<!--<div class="modal" id="loginModal">
 		<div class="form-container">
 			<form class="form">
 				<div class="form-group">
@@ -93,7 +93,7 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div>-->
 
 	<footer class="footer">
 		<div class="content has-text-centered">
@@ -105,34 +105,6 @@
 		document.addEventListener("DOMContentLoaded", () => {
 			const year = new Date().getFullYear();
 			document.getElementById("footerText").innerHTML = '© ' + year + ' Wikings. Il codice sorgente è protetto da licenza <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. I contenuti del sito sono protetti da licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.';
-			document.querySelectorAll(".form-cancel-btn").forEach(e => {
-				e.onclick = () => {
-					document.querySelectorAll(".modal").forEach(e => {
-						e.classList.add("blur");
-					});
-				}
-			});
-			const forms = document.querySelectorAll(".form-container");
-			const submitButtons = document.querySelectorAll(".form-submit-btn");
-			if (!document.querySelector("html[data-theme='dark']")) {
-				forms.forEach(e => {
-					e.classList.remove("darkbg");
-					e.classList.add("lightbg");
-				});
-				submitButtons.forEach(e => {
-					e.style.backgroundColor = "#fff";
-				});
-			} else {
-				forms.forEach(e => {
-					e.classList.remove("lightbg");
-					e.classList.add("darkbg");
-				});
-			}
-			document.querySelectorAll(".form-cancel-btn").forEach(e => {
-				e.onclick = () => {
-					e.closest(".modal").classList.add("hidden");
-				}
-			});
 		})
 	</script>
 

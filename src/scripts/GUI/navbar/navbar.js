@@ -1,4 +1,4 @@
-export function navbar(parentElement) {
+export function navbar(parentElement,pubsub) {
   return {
     render: () => {
       parentElement.innerHTML = `
@@ -37,13 +37,6 @@ export function navbar(parentElement) {
 		</div>
 	</nav>
             `;
-
-      document.getElementById("personal").onclick = () => {
-        document.querySelectorAll(".modal").forEach((e) => {
-          if (e.classList.contains("hidden")) e.classList.remove("hidden");
-          e.classList.add("blur");
-        });
-      };
     },
   };
 }

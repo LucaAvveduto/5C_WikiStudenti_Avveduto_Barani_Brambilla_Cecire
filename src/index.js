@@ -3,8 +3,10 @@ import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { navbar } from "./scripts/GUI/navbar/navbar.js";
+import { createForm } from "./scripts/GUI/form/form.js";
 
 const pubsub = generatePubSub();
+window.pubsub = pubsub;
 
 const articleContainer = document.getElementById("articleContainer");
 generateNavigator(articleContainer);
@@ -13,8 +15,61 @@ const articleSidebarContainer = document.getElementById("articleSidebarContainer
 const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
 
 const navbarEl = document.getElementById("navbar-container");
-const nav = navbar(navbarEl);
+const nav = navbar(navbarEl,pubsub);
 nav.render();
+
+const modalContainer = document.getElementById("modal-container");
+const form = createForm(modalContainer,pubsub);
+
+const loginComponents = [
+    [
+        {
+            "id": "username",
+            "type": "text"
+        },
+        {
+            "id": "password",
+            "type": "password"
+        },
+    ],
+    `<button type="button" onclick="pubsub.publish('register')">
+        <a class="js-modal-trigger">
+            <span>Vuoi diventare uno dei nostri?</span>
+        </a>
+    </button>`
+];
+
+const registerComponents = [
+    [
+        {
+            "id": "pws",
+            "type": "text"
+        },
+        {
+            "id": "psw",
+            "type": "password"
+        },
+    ],
+    `<button type="button" onclick="pubsub.publish('login')">
+        <a class="js-modal-trigger">
+            <span>Torna alla login</span>
+        </a>
+    </button>`
+];
+
+form.build(loginComponents);
+form.render();
+
+pubsub.subscribe("register", () => {
+    form.build(registerComponents);
+    form.render();
+});
+
+pubsub.subscribe("login", () => {
+    form.build(loginComponents);
+    form.render();
+});
+
 
 articleSidebar.build("articleSidebar", "Articoli", {"ciao": "#ciao", "bene": "#b"}, "articleSearchbarContainer");
 articleSidebar.render();
@@ -35,18 +90,12 @@ pubsub.subscribe("articleSearchbar-oncancel", () => {
 // gestione modali di Bulma
 document.addEventListener("DOMContentLoaded", () => {
     // Functions to open and close a modal
-    function openModal(el) {
-        el.classList.add("is-active");
+    function openModal() {
+        modalContainer.classList.add("is-active");
     }
 
-    function closeModal(el) {
-        el.classList.remove("is-active");
-    }
-
-    function closeAllModals() {
-        (document.querySelectorAll(".modal") || []).forEach((modal) => {
-            closeModal(modal);
-        });
+    function closeModal() {
+        modalContainer.classList.remove("is-active");
     }
 
     const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -64,28 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll(".js-modal-trigger") || []).forEach((trigger) => {
-        const modal = trigger.dataset.target;
-        const target = document.getElementById(modal);
-
-        trigger.addEventListener("click", () => {
-            openModal(target);
-        });
-    });
-
+    document.querySelector("button#personal").onclick = () => openModal();
+    
     // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll(".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button, .modal-card-body .button") || []).forEach((close) => {
-        const target = close.closest(".modal");
-
+    (document.querySelectorAll(".form-cancel-btn, .modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button, .modal-card-body .button") || []).forEach((close) => {
         close.addEventListener("click", () => {
-            closeModal(target);
+            closeModal();
         });
     });
 
     // Add a keyboard event to close all modals
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
-            closeAllModals();
+            closeModal();
         }
     });
 });
