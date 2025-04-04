@@ -7,7 +7,7 @@ export const generateSearchbar = (parentElement, pubsub) => {
             placeholder = inputPlaceholder;
         },
         render: () => {
-            let html = `<p class="control has-icons-left has-icons-right">
+            let html = `<p class="control has-icons-left has-icons-right" id="$IDContainer">
 							<input class="input" type="text" placeholder="$PLACEHOLDER" id="$ID">
 							<span class="icon is-left clickableIcon" id="$IDSearch">
 								<i class="fas fa-search"></i>
@@ -47,6 +47,14 @@ export const generateSearchbar = (parentElement, pubsub) => {
                     pubsub.publish(id + "-onsearch", searchBar.value);
                 }
             };
+        },
+        changeVisibility: (visibility) => {
+            if (visibility) {
+                document.getElementById(id + "Container").classList.remove("is-hidden");
+            }
+            else {
+                document.getElementById(id + "Container").classList.add("is-hidden");
+            }
         }
     };
 

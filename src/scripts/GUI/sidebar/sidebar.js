@@ -37,6 +37,14 @@ export const generateSidebar = (parentElement, pubsub) => {
                 newHtml += '<li><a href="' + list[e] + '">' + e + '</a></li>';
             });
             document.getElementById(id + "List").innerHTML = newHtml;
+        },
+        changeVisibility: (visibility) => {
+            if (visibility) {
+                parentElement.classList.remove("is-hidden");
+            }
+            else {
+                parentElement.classList.add("is-hidden");
+            }
         }
     };
 
