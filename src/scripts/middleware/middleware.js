@@ -8,7 +8,6 @@ export const generateMiddleware = () => {
                 console.error(error);
             }
         },
-        register: async (user) => {
 
         register: async (user) => { //registrazione utente
             
@@ -21,7 +20,7 @@ export const generateMiddleware = () => {
                     resolve(data);
                 }).catch(err => {
                     reject(err);
-                })
+                })  
             });
         }
         catch (e) {
