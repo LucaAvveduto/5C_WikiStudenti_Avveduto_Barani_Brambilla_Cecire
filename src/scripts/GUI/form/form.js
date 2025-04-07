@@ -1,4 +1,4 @@
-export function createForm(parentElement) {
+export function createForm(parentElement, pubsub) {
     let data = [];
     let isLightBg = false;
     
@@ -39,7 +39,7 @@ export function createForm(parentElement) {
                         <div id="errorDiv"></div>
                         <div class="columns">
                             <div class="column">
-                                <button class="form-submit-btn" type="submit">Submit</button>
+                                <button class="form-submit-btn" id="sub" type="submit">Submit</button>
                             </div>
                             <div class="column">
                                 <button class="form-submit-btn form-cancel-btn">Cancel</button>
@@ -50,6 +50,23 @@ export function createForm(parentElement) {
            `;
             parentElement.innerHTML = html;
             if(isLightBg) document.querySelectorAll(".form-submit-btn").forEach(e => e.style.backgroundColor = "#fff");
+            document.getElementById("sub").onclick = (event) => {
+                event.preventDefault();
+                const values = [];
+                const forms = document.querySelectorAll("div.form-group");
+                forms.forEach(e => {
+                    const node = e.querySelector(`input`);
+                    values.push(node.value);
+                    node.value = "";
+                });
+                document.querySelectorAll("#radios > *").forEach(e => {
+                    const node = e.querySelector("input");
+                    values.push(node.checked);
+                    node.checked = false;
+                });
+                
+                pubsub.publish(data[2] ? "reg" : "log",values);
+            }
         }
     }
 }
