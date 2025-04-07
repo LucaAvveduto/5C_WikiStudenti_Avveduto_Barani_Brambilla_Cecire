@@ -8,10 +8,8 @@ export const generateMiddleware = () => {
                 console.error(error);
             }
         },
-<<<<<<< HEAD
         register: async (user) => {
 
-=======
         register: async (user) => { //registrazione utente
             
         },
@@ -25,7 +23,6 @@ export const generateMiddleware = () => {
                     reject(err);
                 })
             });
->>>>>>> 3bc9fd1d04362232658bad72bc006617998ee562
         }
         catch (e) {
             console.error(e);
