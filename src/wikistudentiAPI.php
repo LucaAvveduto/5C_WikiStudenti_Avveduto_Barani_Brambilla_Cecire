@@ -15,7 +15,18 @@
             }
             break;
         case "POST":
-            echo json_encode(["ciao"=>$input]);
+            if($input["action"]) {
+                switch ($input["action"]) {
+                    case "login":
+                        echo json_encode(["hola"=>$input]);
+                        break;
+                    case "register":
+                        echo json_encode(["ds"=>$input]);
+                        break;
+                }
+            } else {
+                //Chiamate post
+            }
             break;
         case "PUT":
             break;

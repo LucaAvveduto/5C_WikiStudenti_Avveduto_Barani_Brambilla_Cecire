@@ -94,8 +94,8 @@ pubsub.subscribe("log",(values) => {
     middleware.login(values);
 });
 
-pubsub.subscribe("log",(values) => {
-    //middleware.register(values);
+pubsub.subscribe("reg",(values) => {
+    middleware.register(values);
 });
 
 
