@@ -1,7 +1,16 @@
 <?php
+    include "databaseAccess.php";
+
+    header("Content-Type: application/json");
+
+    $input = json_decode(file_get_contents("php://input"), true);
+
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
-            # code...
+            if (isset($_GET["id"])) {
+                $output = array("aaa" => $_GET["id"]);
+                echo json_encode($output);
+            }
             break;
         case "POST":
             break;
@@ -10,9 +19,5 @@
         case "DELETE":
             break;
     }
-
-header('Content-Type: application/json');
-$input_data = json_decode(file_get_contents('php://input'), true);
-echo json_encode($input_data);
-exit;
+    exit;
 ?>
