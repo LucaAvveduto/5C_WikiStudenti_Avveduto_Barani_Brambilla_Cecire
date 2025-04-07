@@ -4,9 +4,12 @@ import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { navbar } from "./scripts/GUI/navbar/navbar.js";
 import { createForm } from "./scripts/GUI/form/form.js";
+import { generateMiddleware } from "./scripts/middleware/middleware.js";
 
 const pubsub = generatePubSub();
 window.pubsub = pubsub;
+
+const middleware = generateMiddleware();
 
 const articleContainer = document.getElementById("articleContainer");
 generateNavigator(articleContainer);
@@ -85,6 +88,14 @@ pubsub.subscribe("register", () => {
 pubsub.subscribe("login", () => {
     form.build(loginComponents);
     form.render();
+});
+
+pubsub.subscribe("log",(values) => {
+    middleware.login(values);
+});
+
+pubsub.subscribe("log",(values) => {
+    //middleware.register(values);
 });
 
 
