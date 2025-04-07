@@ -1,5 +1,5 @@
 export const generateMiddleware = () => {
-  return {
+    return {
     login: async (username, password) => {
       //login utente
       try {
@@ -21,7 +21,6 @@ export const generateMiddleware = () => {
         console.error(error);
       }
     },
-
     register: async (user) => {
       //registrazione utente
       try {
