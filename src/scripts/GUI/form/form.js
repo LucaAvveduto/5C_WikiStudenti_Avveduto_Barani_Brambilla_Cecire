@@ -24,6 +24,18 @@ export function createForm(parentElement) {
             }).join("");
             html += `
                         ${data[1]}
+                        <div class="d-inline" id="radios">
+                            ${
+                                data[2]?.map(e => {
+                                    return `
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="${e}" />
+                                            ${e}
+                                    </label>
+                                    `
+                                }).join("") || ""
+                            }
+                        </div>
                         <div id="errorDiv"></div>
                         <div class="columns">
                             <div class="column">

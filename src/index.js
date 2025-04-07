@@ -70,7 +70,8 @@ const registerComponents = [
         <a class="js-modal-trigger">
             <span>Torna alla login</span>
         </a>
-    </button>`
+    </button>`,
+    ["Editor","Moderator"]
 ];
 
 form.build(loginComponents);
