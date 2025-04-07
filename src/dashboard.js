@@ -3,6 +3,10 @@ import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
+import { generateMiddleware } from "./scripts/middleware/middleware.js";
+
+const middleware = generateMiddleware();
+console.log(await middleware.login("ciao", "aaa"));
 
 const pubsub = generatePubSub();
 
