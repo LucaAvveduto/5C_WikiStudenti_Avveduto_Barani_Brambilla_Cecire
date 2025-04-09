@@ -9,13 +9,13 @@ function connect() {
   $username = "root";
   $password = "";
   $DB = "wiki";
-  $conn = new mysqli($servername, $username, $password,$DB);
+  $conn = new mysqli($servername, $username, $password, $DB);
   return $conn;
 }
 
 function checkLogin($username,$password) {
     $conn = connect();
-    $stmt = $conn->prepare("SELECT * FROM User WHERE name=? AND password=?");
+    $stmt = $conn->prepare("SELECT * FROM User WHERE Email=? AND Password=?");
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $result = $stmt->get_result();

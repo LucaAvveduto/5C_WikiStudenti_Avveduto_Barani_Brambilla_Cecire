@@ -1,6 +1,6 @@
 export const generateMiddleware = () => {
     return {
-    login: async (username, password) => {
+    login: async (user) => {
       //login utente
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
@@ -10,8 +10,7 @@ export const generateMiddleware = () => {
               },
               "method": "POST",
               "body": JSON.stringify({
-                "username": username,
-                "password": password,
+                "user": user,
                 "action": "login"
               })
         });
@@ -37,6 +36,7 @@ export const generateMiddleware = () => {
               })
         });
         const resp = await response.json();
+        console.log(resp)
         return resp;
       } catch (error) {
         console.error(error);
