@@ -16,6 +16,7 @@ export const generateMiddleware = () => {
               })
         });
         const resp = await response.json();
+        console.log(resp)
         return resp;
       } catch (error) {
         console.error(error);

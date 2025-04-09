@@ -1,5 +1,5 @@
 <?php
-    include "databaseAccess.php";
+    require("databaseAccess.php");
 
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
@@ -18,7 +18,8 @@
             if($input["action"]) {
                 switch ($input["action"]) {
                     case "login":
-                        echo json_encode(["hola"=>$input]);
+                        $response = checkLogin($input["username"][0],$input["username"][1]);
+                        echo json_encode(["response"=>$response]);
                         break;
                     case "register":
                         echo json_encode(["ds"=>$input]);
