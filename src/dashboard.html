@@ -63,7 +63,83 @@
 				<div class="column" id="usersSidebarContainer"></div>
 			</div>
 			<div class="column" id="pageContainer">
-				<div class="content page" id="a">
+				<div class="content page" id="create">
+					<h1 class="title">Aggiungi articolo</h1>
+					<p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
+					<div class="field">
+						<div class="file has-name">
+							<label class="file-label">
+								<input class="file-input" type="file" name="resume">
+								<span class="file-cta">
+									<span class="file-icon">
+										<i class="fas fa-file-upload"></i>
+									</span>
+									<span class="file-label">Scegli file MarkDown (.md)</span>
+								</span>
+								<span class="file-name">Nessun file selezionato</span>
+							</label>
+						</div>
+					</div>
+					<h2>Testo</h2>
+					<div class="field">
+						<p class="control has-icons-left">
+							<input class="input" type="text" placeholder="Titolo">
+							<span class="icon is-left">
+								<i class="fa-solid fa-heading"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Abstract" rows="2"></textarea>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Contenuto" rows="20"></textarea>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Links" rows="3"></textarea>
+					</div>
+					<h2>Immagini</h2>
+					<div class="field">
+						<div class="file has-name">
+							<label class="file-label">
+								<input class="file-input" type="file" name="resume">
+								<span class="file-cta">
+									<span class="file-icon">
+										<i class="fa-solid fa-image"></i>
+									</span>
+									<span class="file-label">Scegli immagine principale</span>
+								</span>
+								<span class="file-name">Nessun file selezionato</span>
+							</label>
+						</div>
+					</div>
+					<div class="field">
+						<p class="control has-icons-left">
+							<input class="input" type="text" placeholder="Link immagine principale">
+							<span class="icon is-left">
+								<i class="fa-solid fa-image"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<div class="file has-name">
+							<label class="file-label">
+								<input class="file-input" type="file" name="resume" multiple>
+								<span class="file-cta">
+									<span class="file-icon">
+										<i class="fa-solid fa-images"></i>
+									</span>
+									<span class="file-label">Scegli le altre immagini</span>
+								</span>
+								<span class="file-name">Nessun file selezionato</span>
+							</label>
+						</div>
+					</div>
+					<div class="field">
+						<textarea class="textarea" placeholder="Link per altre immagini" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="content page" id="edit">
 					<h1 class="title">Modifica articolo</h1>
 					<p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
 					<div class="field">
@@ -136,7 +212,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="content page" id="a">
+				<div class="content page" id="aa">
 					<h1>Dettaglio articolo</h1>
 					<button class="button is-link">
 						<span class="icon">

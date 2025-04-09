@@ -3,10 +3,6 @@ import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
-import { generateMiddleware } from "./scripts/middleware/middleware.js";
-
-const middleware = generateMiddleware();
-console.log(await middleware.login("ciao", "aaa"));
 
 const pubsub = generatePubSub();
 
@@ -23,7 +19,7 @@ const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
 const draftSidebar = generateSidebar(draftSidebarContainer, pubsub);
 const usersSidebar = generateSidebar(usersSidebarContainer, pubsub);
 
-articleSidebar.build("articleSidebar", "Articoli", {"Ciao": "#ciao"}, "articleSearchbarContainer");
+articleSidebar.build("articleSidebar", "Articoli", {"Ciao": "#ciao"}, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
 articleSidebar.render();
 
 draftSidebar.build("draftSidebar", "Bozze", {"Ciao": "#ciao"}, "draftSearchbarContainer");
@@ -49,6 +45,9 @@ pubsub.subscribe("articleSearchbar-onsearch", searchText => {
 });
 pubsub.subscribe("articleSearchbar-oncancel", () => {
     articleSidebar.reset();
+});
+pubsub.subscribe("articleSidebarButton-clicked", () => {
+    location.href = "#create";
 });
 
 draftSearchbar.build("draftSearchbar", "Cerca bozza...");
