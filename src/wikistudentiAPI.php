@@ -23,7 +23,9 @@
                         echo json_encode(["response"=>$response]);
                         break;
                     case "register":
-                        echo json_encode(["ds"=>$input]);
+                        $body = $input["user"];
+                        $res = addUser($body);
+                        echo json_encode(["response" => $res]);
                         break;
                 }
             } else {

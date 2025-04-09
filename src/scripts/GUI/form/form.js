@@ -62,7 +62,7 @@ export function createForm(parentElement, pubsub) {
                 
                 document.querySelectorAll("#radios > *").forEach((e,index) => {
                     const node = e.querySelector("input");
-                    values[`radio${index}`] = node.value;
+                    values[`radio${index}`] = node.checked;
                     node.checked = false;
                 });
                 
