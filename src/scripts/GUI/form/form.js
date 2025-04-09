@@ -6,7 +6,6 @@ export function createForm(parentElement, pubsub) {
         build: (elements) => {
             data = elements;
             isLightBg = !document.querySelector("html[data-theme='dark']");
-
         },
         render: () => {
             parentElement.innerHTML = '';
@@ -52,20 +51,22 @@ export function createForm(parentElement, pubsub) {
             if(isLightBg) document.querySelectorAll(".form-submit-btn").forEach(e => e.style.backgroundColor = "#fff");
             document.getElementById("sub").onclick = (event) => {
                 event.preventDefault();
-                const values = [];
+                const values = {};
                 const forms = document.querySelectorAll("div.form-group");
-                forms.forEach(e => {
+                const keys = data[0].map(e => e["id"]);
+                forms.forEach((e,index) => {
                     const node = e.querySelector(`input`);
-                    values.push(node.value);
+                    values[keys[index]] = node.value;
                     node.value = "";
                 });
-                document.querySelectorAll("#radios > *").forEach(e => {
+                
+                document.querySelectorAll("#radios > *").forEach((e,index) => {
                     const node = e.querySelector("input");
-                    values.push(node.checked);
+                    values[`radio${index}`] = node.value;
                     node.checked = false;
                 });
                 
-                pubsub.publish(data[2] ? "reg" : "log",values);
+                pubsub.publish(data[2] ? "reg" : "log", values);
             }
         }
     }

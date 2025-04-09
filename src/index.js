@@ -27,8 +27,8 @@ const form = createForm(modalContainer,pubsub);
 const loginComponents = [
     [
         {
-            "id": "username",
-            "type": "text"
+            "id": "email",
+            "type": "mail"
         },
         {
             "id": "password",
@@ -91,7 +91,7 @@ pubsub.subscribe("login", () => {
 });
 
 pubsub.subscribe("log",(values) => {
-    middleware.login(values[0],values[1]);
+    middleware.login(values);
 });
 
 pubsub.subscribe("reg",(values) => {
