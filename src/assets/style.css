@@ -145,3 +145,9 @@
 #radios > *{
   margin-right: 10%;
 }
+
+@media (max-width: 768px) {
+  .tab>a>span:not(.icon) {
+    font-size: 0 !important;
+  }
+}
