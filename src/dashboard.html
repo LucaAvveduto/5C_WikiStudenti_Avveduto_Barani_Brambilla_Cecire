@@ -66,20 +66,7 @@
 				<div class="content page" id="create">
 					<h1 class="title">Aggiungi articolo</h1>
 					<p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
-					<div class="field">
-						<div class="file has-name">
-							<label class="file-label">
-								<input class="file-input" type="file" name="resume">
-								<span class="file-cta">
-									<span class="file-icon">
-										<i class="fas fa-file-upload"></i>
-									</span>
-									<span class="file-label">Scegli file MarkDown (.md)</span>
-								</span>
-								<span class="file-name">Nessun file selezionato</span>
-							</label>
-						</div>
-					</div>
+					<div class="field" id="mdFileContainer"></div>
 					<h2>Testo</h2>
 					<div class="field">
 						<p class="control has-icons-left">
@@ -121,20 +108,7 @@
 							</span>
 						</p>
 					</div>
-					<div class="field">
-						<div class="file has-name">
-							<label class="file-label">
-								<input class="file-input" type="file" name="resume" multiple>
-								<span class="file-cta">
-									<span class="file-icon">
-										<i class="fa-solid fa-images"></i>
-									</span>
-									<span class="file-label">Scegli le altre immagini</span>
-								</span>
-								<span class="file-name">Nessun file selezionato</span>
-							</label>
-						</div>
-					</div>
+					
 					<div class="field">
 						<textarea class="textarea" placeholder="Link per altre immagini" rows="3"></textarea>
 					</div>

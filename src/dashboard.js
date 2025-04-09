@@ -3,6 +3,7 @@ import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
+import { generateFileLoader } from "./scripts/GUI/fileLoader/fileLoader.js";
 
 const pubsub = generatePubSub();
 
@@ -99,6 +100,11 @@ pubsub.subscribe("userTab-tab-changed", tabId => {
         usersSearchbar.changeVisibility(true);
     }
 });
+
+const mdFileContainer = document.getElementById("mdFileContainer");
+const file = generateFileLoader(mdFileContainer);
+file.build("mdFile", {icon: '<i class="fa-solid fa-file-arrow-up"></i>', text: "Scegli il file MarkDown (.md)", multiple: true});
+file.render();
 
 // gestione modali di Bulma
 document.addEventListener("DOMContentLoaded", () => {
