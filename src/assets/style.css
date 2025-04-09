@@ -141,3 +141,7 @@
     pointer-events: all !important;
     cursor: pointer !important;
 }
+
+#radios > *{
+  margin-right: 10%;
+}
