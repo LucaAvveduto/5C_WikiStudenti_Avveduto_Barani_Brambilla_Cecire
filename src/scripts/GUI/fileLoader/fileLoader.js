@@ -31,7 +31,7 @@ export const generateFileLoader = (parentElement, pubsub) => {
             };
         },
         getContent: () => {
-            return config.multiple ? files : files[0];
+            return config.multiple ? files : files[0];  
         }
     };
 
