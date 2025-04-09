@@ -91,7 +91,7 @@ pubsub.subscribe("login", () => {
 });
 
 pubsub.subscribe("log",(values) => {
-    middleware.login(values);
+    middleware.login(values[0],values[1]);
 });
 
 pubsub.subscribe("reg",(values) => {

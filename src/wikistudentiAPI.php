@@ -18,7 +18,7 @@
             if($input["action"]) {
                 switch ($input["action"]) {
                     case "login":
-                        $response = checkLogin($input["username"][0],$input["username"][1]);
+                        $response = checkLogin($input["username"],$input["password"]);
                         echo json_encode(["response"=>$response]);
                         break;
                     case "register":
