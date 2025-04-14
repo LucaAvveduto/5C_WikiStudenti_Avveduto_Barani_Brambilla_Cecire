@@ -23,9 +23,12 @@ const usersSidebar = generateSidebar(usersSidebarContainer, pubsub);
 articleSidebar.build("articleSidebar", "Articoli", {"Ciao": "#ciao"}, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
 articleSidebar.render();
 
-draftSidebar.build("draftSidebar", "Bozze", {"Ciao": "#ciao"}, "draftSearchbarContainer");
+draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContainer");
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
+pubsub.subscribe("draftSidebar-item-clicked", () => {
+    location.href = "#manage-articles";
+});
 
 usersSidebar.build("usersSidebar", "Utenti", {"Utente1": "#1"}, "usersSearchbarContainer");
 usersSidebar.render();
@@ -48,7 +51,7 @@ pubsub.subscribe("articleSearchbar-oncancel", () => {
     articleSidebar.reset();
 });
 pubsub.subscribe("articleSidebarButton-clicked", () => {
-    location.href = "#create";
+    location.href = "#manage-articles";
 });
 
 draftSearchbar.build("draftSearchbar", "Cerca bozza...");
@@ -108,6 +111,9 @@ articlesManager.build("articlesManager");
 articlesManager.render();
 pubsub.subscribe("article-saved", article => {
     console.log(article);
+});
+pubsub.subscribe("articlesManager-back-pressed", () => {
+    location.href = "#dashboard";
 });
 
 // gestione modali di Bulma

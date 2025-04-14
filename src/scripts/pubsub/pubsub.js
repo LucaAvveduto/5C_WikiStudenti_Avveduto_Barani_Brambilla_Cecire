@@ -9,7 +9,9 @@ export const generatePubSub = () => {
             events[eventName].push(callback);
         },
         publish: (eventName, data) => {
-            events[eventName].forEach(callback => callback(data));
+            if (events[eventName]) {
+                events[eventName].forEach(callback => callback(data));
+            }
         }
     };
 };

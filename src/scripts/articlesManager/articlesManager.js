@@ -9,6 +9,12 @@ export const generateArticlesManager = (parentElement, pubsub) => {
         },
         render: () => {
             const html = `<div class="content" id="$ID">
+                            <button class="button is-link" id="$IDBackButton">
+                                <span class="icon">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </span>
+                                <span>Indietro</span>
+                            </button>
                             <h1 class="title">Aggiungi articolo</h1>
                             <p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
                             <div class="field" id="mdFileContainer"></div>
@@ -51,7 +57,13 @@ export const generateArticlesManager = (parentElement, pubsub) => {
                                 </span>
                                 <span>Salva</span>
                             </button>
-                        </div>`.replace("$ID", id);
+                            <button class="button is-danger">
+                                <span class="icon">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </span>
+                                <span>Annulla</span>
+                            </button>
+                        </div>`.replaceAll("$ID", id);
             parentElement.innerHTML = html;
             
             const mdFileContainer = document.getElementById("mdFileContainer");
@@ -72,7 +84,10 @@ export const generateArticlesManager = (parentElement, pubsub) => {
             
             document.getElementById("saveArticle").onclick = () => {
                 pubsub.publish("article-saved", manager.getContent());
-            }
+            };
+            document.getElementById(id + "BackButton").onclick = () => {
+                pubsub.publish(id + "-back-pressed");
+            };
         },
         getContent: () => {
             return {

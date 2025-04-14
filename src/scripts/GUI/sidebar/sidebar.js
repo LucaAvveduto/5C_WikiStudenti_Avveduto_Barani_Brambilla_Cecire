@@ -33,10 +33,17 @@ export const generateSidebar = (parentElement, pubsub) => {
                         <ul class="menu-list" id="$IDList">`.replaceAll("$ID", id).replace("$SID", searchBarContainerId).replace("$TITLE", title);
             
             Object.keys(list).forEach(e => {
-                html += '<li><a href="' + list[e] + '">' + e + '</a></li>';
+                html += '<li class="$IDitem"><a'.replace("$ID", id) + ((list[e]) ? (' href="'.replace("$ID", id) + list[e] + '"') : "") + '>' + e + '</a></li>';
             });
             html += "</ul></aside>";
             parentElement.innerHTML = html;
+            console.log(document.querySelectorAll("." + id + "item"));
+            
+            document.querySelectorAll("." + id + "item").forEach(e => {
+                e.onclick = () => {
+                    pubsub.publish(id + "-item-clicked");
+                }
+            });
 
             if (buttonInfo) {
                 document.getElementById(id + "Button").onclick = () => {
@@ -49,7 +56,7 @@ export const generateSidebar = (parentElement, pubsub) => {
             
             Object.keys(list).forEach(e => {
                 if (e.toLowerCase().includes(inputSearch.toLowerCase())) {
-                    newHtml += '<li><a href="' + list[e] + '">' + e + '</a></li>';
+                    newHtml += '<li class="$IDitem"><a'.replace("$ID", id) + ((list[e]) ? (' href="'.replace("$ID", id) + list[e] + '"') : "") + '>' + e + '</a></li>';
                 }
             });
             document.getElementById(id + "List").innerHTML = newHtml;
@@ -58,7 +65,7 @@ export const generateSidebar = (parentElement, pubsub) => {
             let newHtml = "";
             
             Object.keys(list).forEach(e => {
-                newHtml += '<li><a href="' + list[e] + '">' + e + '</a></li>';
+                newHtml += '<li class="$IDitem"><a'.replace("$ID", id) + ((list[e]) ? (' href="'.replace("$ID", id) + list[e] + '"') : "") + '>' + e + '</a></li>';
             });
             document.getElementById(id + "List").innerHTML = newHtml;
         },
