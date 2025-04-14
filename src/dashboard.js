@@ -3,7 +3,7 @@ import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
-import { generateFileLoader } from "./scripts/GUI/fileLoader/fileLoader.js";
+import { generateArticlesManager } from "./scripts/articlesManager/articlesManager.js";
 
 const pubsub = generatePubSub();
 
@@ -81,7 +81,7 @@ pubsub.subscribe("userTab-tab-changed", tabId => {
         draftSidebar.changeVisibility(false);
         draftSearchbar.changeVisibility(false);
         usersSidebar.changeVisibility(false);
-        usersSearchbar.changeVisibility(false);
+        articleSidebar.changeButtonState(true);
     }
     else if (tabId === "Moderatore") {
         articleSidebar.changeVisibility(true);
@@ -90,6 +90,7 @@ pubsub.subscribe("userTab-tab-changed", tabId => {
         draftSearchbar.changeVisibility(true);
         usersSidebar.changeVisibility(false);
         usersSearchbar.changeVisibility(false);
+        articleSidebar.changeButtonState(false);
     }
     else {
         articleSidebar.changeVisibility(false);
@@ -101,10 +102,13 @@ pubsub.subscribe("userTab-tab-changed", tabId => {
     }
 });
 
-const mdFileContainer = document.getElementById("mdFileContainer");
-const file = generateFileLoader(mdFileContainer);
-file.build("mdFile", {icon: '<i class="fa-solid fa-file-arrow-up"></i>', text: "Scegli il file MarkDown (.md)", multiple: true});
-file.render();
+const articlesMangerContainer = document.getElementById("manage-articles");
+const articlesManager = generateArticlesManager(articlesMangerContainer, pubsub);
+articlesManager.build("articlesManager");
+articlesManager.render();
+pubsub.subscribe("article-saved", article => {
+    console.log(article);
+});
 
 // gestione modali di Bulma
 document.addEventListener("DOMContentLoaded", () => {

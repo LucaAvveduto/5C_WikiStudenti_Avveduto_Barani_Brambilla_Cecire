@@ -69,6 +69,18 @@ export const generateSidebar = (parentElement, pubsub) => {
             else {
                 parentElement.classList.add("is-hidden");
             }
+        },
+        changeButtonState: (state) => {
+            const button = document.getElementById(id + "Button");
+            
+            if (state) {
+                button.disabled = false;
+                button.classList.remove("is-hidden");
+            }
+            else {
+                button.disabled = true;
+                button.classList.add("is-hidden");
+            }
         }
     };
 

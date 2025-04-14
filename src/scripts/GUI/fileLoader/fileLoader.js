@@ -31,7 +31,12 @@ export const generateFileLoader = (parentElement, pubsub) => {
             };
         },
         getContent: () => {
-            return config.multiple ? files : files[0];  
+            return config.multiple ? files : files ? files[0] : null;  
+        },
+        clear: () => {
+            fileInput.files = null;
+            files = fileInput.files;
+            document.getElementById(id + "Filename").innerText = "Nessun file selezionato";
         }
     };
 
