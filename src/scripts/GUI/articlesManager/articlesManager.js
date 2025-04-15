@@ -1,4 +1,4 @@
-import { generateFileLoader } from "../GUI/fileLoader/fileLoader.js";
+import { generateFileLoader } from "../fileLoader/fileLoader.js";
 
 export const generateArticlesManager = (parentElement, pubsub) => {
     let id, mdFileLoader, mainImageLoader, imagesLoader;

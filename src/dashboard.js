@@ -3,8 +3,9 @@ import { generateNavigator } from "./scripts/GUI/navigator/navigator.js";
 import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
-import { generateArticlesManager } from "./scripts/articlesManager/articlesManager.js";
-import { generateUsersManager } from "./scripts/usersManager/usersManager.js";
+import { generateArticlesManager } from "./scripts/GUI/articlesManager/articlesManager.js";
+import { generateUsersManager } from "./scripts/GUI/usersManager/usersManager.js";
+import { generateVersionsTable } from "./scripts/GUI/versionsTable/versionsTable.js";
 
 const pubsub = generatePubSub();
 
@@ -128,6 +129,17 @@ pubsub.subscribe("usersManager-save-pressed", user => {
     console.log(user);
 });
 pubsub.subscribe("usersManager-back-pressed", () => {
+    location.href = "#dashboard";
+});
+
+const versionsTableContainer = document.getElementById("manage-versions");
+const versionsTable = generateVersionsTable(versionsTableContainer, pubsub);
+versionsTable.build("versionsTable", [{id: 1, current: true}, {id: 2, current: false}]);
+versionsTable.render();
+pubsub.subscribe("usersManager-save-pressed", user => {
+    console.log(user);
+});
+pubsub.subscribe("versionsTable-back-pressed", () => {
     location.href = "#dashboard";
 });
 

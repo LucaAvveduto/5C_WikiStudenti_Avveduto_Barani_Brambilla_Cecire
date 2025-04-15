@@ -14,7 +14,6 @@ export const generateUsersManager = (parentElement, pubsub) => {
                                 <span>Indietro</span>
                             </button>
                             <h1 class="title">Gestisci </h1>
-                            <p>Carica file in formato MarkDown (.md) o scrivi i contenuti.</p>
                             <div class="field">
                                 <p class="control has-icons-left">
                                     <input class="input" type="text" placeholder="Nome" id="name">
@@ -41,7 +40,7 @@ export const generateUsersManager = (parentElement, pubsub) => {
                             </div>
                             <div class="field">
                                 <p class="control has-icons-left">
-                                    <input class="input" type="number" placeholder="Anno di nascita">
+                                    <input class="input" type="number" placeholder="Anno di nascita" id="birthYear">
                                     <span class="icon is-small is-left">
                                         <i class="fa-solid fa-calendar"></i>
                                     </span>
@@ -49,7 +48,7 @@ export const generateUsersManager = (parentElement, pubsub) => {
                             </div>
                             <div class="field">
                                 <p class="control has-icons-left">
-                                    <input class="input" type="email" placeholder="Email" disabled>
+                                    <input class="input" type="email" placeholder="Email" id="email" disabled>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-envelope"></i>
                                     </span>
@@ -57,24 +56,24 @@ export const generateUsersManager = (parentElement, pubsub) => {
                             </div>
                             <div class="field">
                                 <p class="control has-icons-left">
-                                    <input class="input" type="password" placeholder="Password">
+                                    <input class="input" type="password" placeholder="Password" id="password">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-lock"></i>
                                     </span>
                                 </p>
                             </div>
                             <div class="field">
-                                <p>Desidero essere:</p>
+                                <p>Ruoli:</p>
                                 <div class="checkboxes">
                                     <label class="checkbox has-icons-left">
-                                        <input type="checkbox">
+                                        <input type="checkbox" id="isWriter">
                                         <span class="icon is-small is-left">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </span>
                                         <span>Scrittore</span>
                                     </label>
                                     <label class="checkbox has-icons-left">
-                                        <input type="checkbox">
+                                        <input type="checkbox" id="isModerator">
                                         <span class="icon is-small is-left">
                                             <i class="fa-solid fa-user-shield"></i>
                                         </span>
@@ -110,27 +109,25 @@ export const generateUsersManager = (parentElement, pubsub) => {
         },
         getContent: () => {
             return {
-                title: document.getElementById("title").value,
-                abstract: document.getElementById("abstract").value,
-                content: document.getElementById("content").value,
-                links: document.getElementById("links").value,
-                mainImageLink: document.getElementById("mainImageLink").value,
-                imagesLinks: document.getElementById("imagesLinks").value,
-                mdFile: mdFileLoader.getContent(),
-                mainImage: mainImageLoader.getContent(),
-                images: imagesLoader.getContent()
+                name: document.getElementById("name").value,
+                surname: document.getElementById("surname").value,
+                class: document.getElementById("class").value,
+                birthYear: document.getElementById("birthYear").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                isWriter: document.getElementById("isWriter").value,
+                isModerator: document.getElementById("isModerator").value
             };
         },
-        setContent: (article) => {
-            document.getElementById("title").value = article.title;
-            document.getElementById("abstract").value = article.abstract;
-            document.getElementById("content").value = article.content;
-            document.getElementById("links").value = article.links;
-            document.getElementById("mainImageLink").value = article.mainImageLink;
-            document.getElementById("imagesLinks").value = article.imagesLinks;
-            mdFileLoader.clear();
-            mainImageLoader.clear();
-            imagesLoader.clear();
+        setContent: (user) => {
+            document.getElementById("name").value = user.name;
+            document.getElementById("surname").value = user.surname;
+            document.getElementById("class").value = user.class;
+            document.getElementById("birthYear").value = user.birthYear;
+            document.getElementById("email").value = user.email;
+            document.getElementById("password").value = user.password;
+            document.getElementById("isWriter").value = user.isWriter;
+            document.getElementById("isModerator").value = user.isModerator;
         }
     };
     
