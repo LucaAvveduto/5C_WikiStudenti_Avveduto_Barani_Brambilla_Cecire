@@ -37,7 +37,6 @@ export const generateSidebar = (parentElement, pubsub) => {
             });
             html += "</ul></aside>";
             parentElement.innerHTML = html;
-            console.log(document.querySelectorAll("." + id + "item"));
             
             document.querySelectorAll("." + id + "item").forEach(e => {
                 e.onclick = () => {

@@ -4,6 +4,7 @@ import { generateTabs } from "./scripts/GUI/tabs/tabs.js";
 import { generateSidebar } from "./scripts/GUI/sidebar/sidebar.js";
 import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
 import { generateArticlesManager } from "./scripts/articlesManager/articlesManager.js";
+import { generateUsersManager } from "./scripts/usersManager/usersManager.js";
 
 const pubsub = generatePubSub();
 
@@ -30,9 +31,12 @@ pubsub.subscribe("draftSidebar-item-clicked", () => {
     location.href = "#manage-articles";
 });
 
-usersSidebar.build("usersSidebar", "Utenti", {"Utente1": "#1"}, "usersSearchbarContainer");
+usersSidebar.build("usersSidebar", "Utenti", {"Utente1": ""}, "usersSearchbarContainer");
 usersSidebar.render();
 usersSidebar.changeVisibility(false);
+pubsub.subscribe("usersSidebar-item-clicked", () => {
+    location.href = "#manage-users";
+});
 
 const articleSearchbarContainer = document.getElementById("articleSearchbarContainer");
 const articleSearchbar = generateSearchbar(articleSearchbarContainer, pubsub);
@@ -109,10 +113,21 @@ const articlesMangerContainer = document.getElementById("manage-articles");
 const articlesManager = generateArticlesManager(articlesMangerContainer, pubsub);
 articlesManager.build("articlesManager");
 articlesManager.render();
-pubsub.subscribe("article-saved", article => {
+pubsub.subscribe("articlesManager-save-pressed", article => {
     console.log(article);
 });
 pubsub.subscribe("articlesManager-back-pressed", () => {
+    location.href = "#dashboard";
+});
+
+const usersMangerContainer = document.getElementById("manage-users");
+const usersManager = generateUsersManager(usersMangerContainer, pubsub);
+usersManager.build("usersManager");
+usersManager.render();
+pubsub.subscribe("usersManager-save-pressed", user => {
+    console.log(user);
+});
+pubsub.subscribe("usersManager-back-pressed", () => {
     location.href = "#dashboard";
 });
 

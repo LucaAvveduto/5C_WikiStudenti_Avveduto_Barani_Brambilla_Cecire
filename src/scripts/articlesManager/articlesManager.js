@@ -51,17 +51,17 @@ export const generateArticlesManager = (parentElement, pubsub) => {
                                 <textarea class="textarea" placeholder="Link per altre immagini" rows="3" id="imagesLinks"></textarea>
                             </div>
                             
-                            <button class="button is-link" id="saveArticle">
+                            <button class="button is-link" id="$IDSaveButton">
                                 <span class="icon">
                                     <i class="fas fa-save"></i>
                                 </span>
                                 <span>Salva</span>
                             </button>
-                            <button class="button is-danger">
+                            <button class="button is-danger" id="$IDDeleteButton">
                                 <span class="icon">
-                                    <i class="fa-solid fa-xmark"></i>
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </span>
-                                <span>Annulla</span>
+                                <span>Elimina articolo</span>
                             </button>
                         </div>`.replaceAll("$ID", id);
             parentElement.innerHTML = html;
@@ -82,11 +82,14 @@ export const generateArticlesManager = (parentElement, pubsub) => {
             imagesLoader.build("imageLoader", {icon: '<i class="fa-solid fa-images"></i>', text: "Scegli le altre immagini", multiple: true});
             imagesLoader.render();
             
-            document.getElementById("saveArticle").onclick = () => {
-                pubsub.publish("article-saved", manager.getContent());
+            document.getElementById(id + "SaveButton").onclick = () => {
+                pubsub.publish(id + "-save-pressed", manager.getContent());
             };
             document.getElementById(id + "BackButton").onclick = () => {
                 pubsub.publish(id + "-back-pressed");
+            };
+            document.getElementById(id + "DeleteButton").onclick = () => {
+                pubsub.publish(id + "-delete-pressed");
             };
         },
         getContent: () => {
