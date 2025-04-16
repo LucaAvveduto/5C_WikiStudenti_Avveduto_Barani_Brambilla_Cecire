@@ -5,7 +5,9 @@ export const generateUsersManager = (parentElement, pubsub) => {
         build: (inputId) => {
             id = inputId;
         },
-        render: () => {
+        render: (inputUser) => {
+            const user = inputUser;
+
             const html = `<div class="content" id="$ID">
                             <button class="button is-link" id="$IDBackButton">
                                 <span class="icon">
@@ -106,6 +108,15 @@ export const generateUsersManager = (parentElement, pubsub) => {
             document.getElementById(id + "DeleteButton").onclick = () => {
                 pubsub.publish(id + "-delete-pressed");
             };
+
+            document.getElementById("name").value = user.name;
+            document.getElementById("surname").value = user.surname;
+            document.getElementById("class").value = user.class;
+            document.getElementById("birthYear").value = user.birthYear;
+            document.getElementById("email").value = user.email;
+            document.getElementById("password").value = user.password;
+            document.getElementById("isWriter").checked = user.isWriter;
+            document.getElementById("isModerator").checked = user.isModerator;
         },
         getContent: () => {
             return {
@@ -115,19 +126,9 @@ export const generateUsersManager = (parentElement, pubsub) => {
                 birthYear: document.getElementById("birthYear").value,
                 email: document.getElementById("email").value,
                 password: document.getElementById("password").value,
-                isWriter: document.getElementById("isWriter").value,
-                isModerator: document.getElementById("isModerator").value
+                isWriter: document.getElementById("isWriter").checked,
+                isModerator: document.getElementById("isModerator").checked
             };
-        },
-        setContent: (user) => {
-            document.getElementById("name").value = user.name;
-            document.getElementById("surname").value = user.surname;
-            document.getElementById("class").value = user.class;
-            document.getElementById("birthYear").value = user.birthYear;
-            document.getElementById("email").value = user.email;
-            document.getElementById("password").value = user.password;
-            document.getElementById("isWriter").value = user.isWriter;
-            document.getElementById("isModerator").value = user.isModerator;
         }
     };
     

@@ -11,6 +11,32 @@ const pubsub = generatePubSub();
 
 const pageContainer = document.getElementById("pageContainer");
 generateNavigator(pageContainer);
+const prova = {name: "articolo", versions:[{id: 1, current: true}, {id: 2}, {id: 3}]};
+
+const versionsTableContainer = document.getElementById("manage-versions");
+const versionsTable = generateVersionsTable(versionsTableContainer, pubsub);
+versionsTable.build("versionsTable");
+pubsub.subscribe("usersManager-save-pressed", user => {
+    console.log(user);
+});
+pubsub.subscribe("versionsTable-back-pressed", () => {
+    location.href = "#dashboard";
+});
+pubsub.subscribe("versionsTable-open-pressed", id => {
+    console.log(id)
+});
+pubsub.subscribe("versionsTable-usethis-pressed", id => {
+    prova.versions.map(e => {
+        if (e.id === id) {
+            e.current = true;
+        }
+        else {
+            e.current = false;
+        }
+    })
+    versionsTable.render(prova);
+    console.log(prova)
+});
 
 const tabsContainer = document.getElementById("tabsContainer");
 const articleSidebarContainer = document.getElementById("articleSidebarContainer");
@@ -29,7 +55,8 @@ draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContain
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
 pubsub.subscribe("draftSidebar-item-clicked", () => {
-    location.href = "#manage-articles";
+    versionsTable.render(prova)
+    location.href = "#manage-versions";
 });
 
 usersSidebar.build("usersSidebar", "Utenti", {"Utente1": ""}, "usersSearchbarContainer");
@@ -124,22 +151,11 @@ pubsub.subscribe("articlesManager-back-pressed", () => {
 const usersMangerContainer = document.getElementById("manage-users");
 const usersManager = generateUsersManager(usersMangerContainer, pubsub);
 usersManager.build("usersManager");
-usersManager.render();
+usersManager.render({name: "ciao", surname: "ciao", class: "qintac", birthYear: 2006, email: "aaa@itis.eu", password: "aaa", isWriter:"true", isModerator: false});
 pubsub.subscribe("usersManager-save-pressed", user => {
     console.log(user);
 });
 pubsub.subscribe("usersManager-back-pressed", () => {
-    location.href = "#dashboard";
-});
-
-const versionsTableContainer = document.getElementById("manage-versions");
-const versionsTable = generateVersionsTable(versionsTableContainer, pubsub);
-versionsTable.build("versionsTable", [{id: 1, current: true}, {id: 2, current: false}]);
-versionsTable.render();
-pubsub.subscribe("usersManager-save-pressed", user => {
-    console.log(user);
-});
-pubsub.subscribe("versionsTable-back-pressed", () => {
     location.href = "#dashboard";
 });
 
