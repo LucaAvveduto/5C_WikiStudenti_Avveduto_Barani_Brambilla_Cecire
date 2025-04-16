@@ -106,14 +106,31 @@ export const generateMiddleware = () => {
       }
     },
 
-    modificaDati: async (user) => {},
+    modificaDati: async (user) => {
+      
+    },
 
     modificaRuoli: async (user) => {},
 
     approvazione: async (article) => {},
 
-    ripristino: async (version) => {},
+    ripristino: async (version) => {
+      
+    },
 
-    richiestaDati: async () => {},
+    richiestaDati: async () => {
+      try {
+          const response = await fetch("/dati", { 
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          console.error(e);
+      }
+  },
   };
 };
