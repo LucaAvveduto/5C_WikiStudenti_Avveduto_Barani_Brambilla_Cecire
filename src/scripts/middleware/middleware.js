@@ -107,17 +107,89 @@ export const generateMiddleware = () => {
     },
 
     modificaDati: async (user) => {
-      
+      try {
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user: user,
+            action: "modificaDati",
+          }),
+        });
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Errore modifica dati:", error);
+        throw error;
+      }
     },
 
-    modificaRuoli: async (user) => {},
+    modificaRuoli: async (user) => {
+      try {
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user: user,
+            action: "modificaRuoli",
+          }),
+        });
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Errore modifica ruoli:", error);
+        throw error;
+      }
+    },
 
-    approvazione: async (article) => {},
+    approvazione: async (article) => {
+      try {
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            article: article,
+            action: "approvazione",
+          }),
+        });
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Errore approvazione articolo:", error);
+        throw error;
+      }
+    },
 
     ripristino: async (version) => {
-      
+      try {
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            version: version,
+            action: "ripristino",
+          }),
+        });
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Errore ripristino versione:", error);
+        throw error;
+      }
     },
-
+    
     richiestaDati: async () => {
       try {
           const response = await fetch("/dati", { 
