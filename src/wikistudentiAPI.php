@@ -9,10 +9,7 @@
 
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
-            if (isset($_GET["id"])) {
-                $output = array("aaa" => $_GET["id"]);
-                echo json_encode($output);
-            }
+            //return docs
             break;
         case "POST":
             if($input["action"]) {
@@ -27,15 +24,35 @@
                         $res = addUser($body);
                         echo json_encode(["response" => $res]);
                         break;
+                    case "deleteUser":
+                        //
+                    break;
+                    case "addArticle":
+                        //
+                    break;
+                    case "modifyUserData":
+                        //
+                    break;
+                    case "modifyRoles":
+                        //
+                    break;
+                    case "modifyUserData":
+                        //
+                    break;
+                    case "approveDraft":
+                        //
+                    break;
+                    case "resetDoc":
+                        //
+                    break;
+                    case "addVersion":
+                        //
+                    break;
                 }
-            } else {
-                //Chiamate post
             }
             break;
-        case "PUT":
-            break;
-        case "DELETE":
-            break;
+        default:
+        break;
     }
     exit;
 ?>

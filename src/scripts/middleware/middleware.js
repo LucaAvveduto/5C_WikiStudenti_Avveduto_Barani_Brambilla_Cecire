@@ -36,173 +36,171 @@ export const generateMiddleware = () => {
               })
         });
         const resp = await response.json();
-        console.log(resp)
         return resp;
       } catch (error) {
-        console.error(error);
+        return error;
       }
     },
 
-    load: () => {
-      try {
-        return new Promise((resolve, reject) => {
-          fetch("/bookings")
-            .then((r) => r.json())
-            .then((data) => {
-              resolve(data);
-            })
-            .catch((err) => {
-              reject(err);
-            });
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-
-    delete: (id) => {
+    deleteUser: async(id) => {
       //rimozione utente
       try {
-        return new Promise((resolve, reject) => {
-          fetch("/delete/" + id, {
-            method: "delete",
-            headers: {
+        const resp = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+            "method": "POST",
+            "headers": {
+              'Accept': 'application/json',
               "Content-Type": "application/json",
             },
+            "body": JSON.stringify({
+              "id": id,
+              "action": "deleteUser"
+            })
           })
-            .then((r) => r.json())
-            .then((data) => {
-              return resolve(data);
-            })
-            .catch((err) => {
-              reject(err);
-            });
-        });
+          const res = await resp.json();
+          return res;
       } catch (e) {
-        console.error(e);
+        return e;
       }
     },
-    insert: (article) => {
+
+
+    insert: async(article) => {
       //aggiunta articolo
-      const body = article;
-      const fetchOptions = {
-        method: "post",
-        body: body,
-      };
-
       try {
-        return new Promise((resolve, reject) => {
-          fetch("/insert", fetchOptions)
-            .then((r) => r.json())
-            .then((data) => {
-              resolve(data);
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          "headers": {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            "method": "POST",
+            "body": JSON.stringify({
+              "article": article,
+              "action": "addArticle"
             })
-            .catch((err) => {
-              reject(err);
-            });
         });
-      } catch (e) {
-        console.error(e);
+        const resp = await response.json();
+        return resp;
+      } catch (error) {
+        return error;
       }
     },
 
-    modificaDati: async (user) => {
+    modifyUserData: async (user) => {
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
-          method: "POST",
-          headers: {
+          "method": "POST",
+          "headers": {
             "Accept": "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            user: user,
-            action: "modificaDati",
+          "body": JSON.stringify({
+            "user": user,
+            "action": "modifyUserData",
           }),
         });
         const data = await response.json();
         return data;
       } catch (error) {
-        console.error("Errore modifica dati:", error);
-        throw error;
+        return error;
       }
     },
 
-    modificaRuoli: async (user) => {
+    modifyRoles: async (user, role) => {
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
-          method: "POST",
-          headers: {
+          "method": "POST",
+          "headers": {
             "Accept": "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            user: user,
-            action: "modificaRuoli",
+          "body": JSON.stringify({
+            "user": user,
+            "role": role,
+            "action": "modifyRoles",
           }),
         });
         const data = await response.json();
         return data;
       } catch (error) {
-        console.error("Errore modifica ruoli:", error);
-        throw error;
+        return error;
       }
     },
 
-    approvazione: async (article) => {
+    approveDraft: async(article) => {
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
-          method: "POST",
-          headers: {
+          "method": "POST",
+          "headers": {
             "Accept": "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            article: article,
-            action: "approvazione",
+          "body": JSON.stringify({
+            "article": article,
+            "action": "approveDraft",
           }),
         });
         const data = await response.json();
         return data;
       } catch (error) {
-        console.error("Errore approvazione articolo:", error);
-        throw error;
+        return error;
       }
     },
 
-    ripristino: async (version) => {
+    resetDoc: async (doc, version) => {
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
-          method: "POST",
-          headers: {
+          "method": "POST",
+          "headers": {
             "Accept": "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            version: version,
-            action: "ripristino",
+          "body": JSON.stringify({
+            "doc": doc,
+            "version": version,
+            "action": "resetDoc",
           }),
         });
         const data = await response.json();
         return data;
       } catch (error) {
-        console.error("Errore ripristino versione:", error);
-        throw error;
+        return error;
+      }
+    },
+
+    addVersion: async(doc, version) => {
+      try {
+        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+          "method": "POST",
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          "body": JSON.stringify({
+            "doc": doc,
+            "version": version,
+            "action": "addVersion",
+          }),
+        });
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return error;
       }
     },
     
-    richiestaDati: async () => {
+    getDocs: async() => {
       try {
-          const response = await fetch("/dati", { 
-              method: "GET",
-              headers: {
+          const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", { 
+              "method": "GET",
+              "headers": {
                   "Content-Type": "application/json",
               },
           });
           const data = await response.json(); 
           return data; 
       } catch (e) {
-          console.error(e);
+          return e;
       }
-  },
+    },
   };
 };
