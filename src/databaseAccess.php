@@ -63,3 +63,51 @@ function addUser($params) {
     return 'Message: ' . $e->getMessage();
   }
 }
+
+function deleteUser($mail) 
+{  
+  try {
+    $conn = connect();
+    $stmt = $conn->prepare("DELETE * FROM User WHERE Email=?");
+    $stmt->bind_param("s", $mail);
+    $stmt->execute();
+    return true;
+  } catch (Exception $e) {
+    return false;
+  }
+}
+
+function addArticle($params) {
+  try {
+    $conn = connect();
+    $conn -> query("INSERT INTO Article VALUES()");
+    $id = $conn -> query("SELECT * FROM Article ORDER BY id DESC LIMIT 1");
+    $stmt = $conn -> prepare(
+      "INSERT INTO Version(article, Title, Text, Abstract, Approved, MainImage) VALUES (?, ?, ?, ?, ?, ?)"
+    );
+
+    $article = $id;
+    $title = $params["title"];
+    $text = $params["text"];
+    $abstract = $params["abstract"];
+    $approved = 0;
+    $mainImg = null;
+
+    $stmt->bind_param(
+      'isssii',
+      $article,
+      $title,
+      $text,
+      $abstract,
+      $approved,
+      $mainImg,
+    );
+
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    return true;
+  } catch (Exception $e) {
+    return 'Message: ' . $e->getMessage();
+  }
+}

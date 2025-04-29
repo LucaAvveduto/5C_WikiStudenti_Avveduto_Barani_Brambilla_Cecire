@@ -25,10 +25,12 @@
                         echo json_encode(["response" => $res]);
                         break;
                     case "deleteUser":
-                        //
+                        $mail = $input["id"];
+                        $response = deleteUser($mail);
+                        echo json_encode(["response" => $response]);
                     break;
                     case "addArticle":
-                        //
+                        
                     break;
                     case "modifyUserData":
                         //

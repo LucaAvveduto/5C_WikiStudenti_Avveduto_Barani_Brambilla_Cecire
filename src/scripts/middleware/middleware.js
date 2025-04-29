@@ -64,7 +64,7 @@ export const generateMiddleware = () => {
     },
 
 
-    insert: async(article) => {
+    addArticle: async(article) => {
       //aggiunta articolo
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
