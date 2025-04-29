@@ -6,6 +6,7 @@ import { generateSearchbar } from "./scripts/GUI/searchbar/searchbar.js";
 import { generateArticlesManager } from "./scripts/GUI/articlesManager/articlesManager.js";
 import { generateUsersManager } from "./scripts/GUI/usersManager/usersManager.js";
 import { generateVersionsTable } from "./scripts/GUI/versionsTable/versionsTable.js";
+import { generateDraftViewer } from "./scripts/GUI/draftViewer/draftViewer.js";
 
 const pubsub = generatePubSub();
 
@@ -16,16 +17,19 @@ const prova = {name: "articolo", versions:[{id: 1, current: true}, {id: 2}, {id:
 const versionsTableContainer = document.getElementById("manage-versions");
 const versionsTable = generateVersionsTable(versionsTableContainer, pubsub);
 versionsTable.build("versionsTable");
-pubsub.subscribe("usersManager-save-pressed", user => {
+pubsub.subscribe("usersManager-save-clicked", user => {
     console.log(user);
 });
-pubsub.subscribe("versionsTable-back-pressed", () => {
+pubsub.subscribe("versionsTable-back-clicked", () => {
     location.href = "#dashboard";
 });
-pubsub.subscribe("versionsTable-open-pressed", id => {
+pubsub.subscribe("versionsTable-open-clicked", id => {
     console.log(id)
 });
-pubsub.subscribe("versionsTable-usethis-pressed", id => {
+pubsub.subscribe("versionsTable-delete-clicked", name => {
+    console.log(name)
+});
+pubsub.subscribe("versionsTable-usethis-clicked", id => {
     prova.versions.map(e => {
         if (e.id === id) {
             e.current = true;
@@ -38,6 +42,19 @@ pubsub.subscribe("versionsTable-usethis-pressed", id => {
     console.log(prova)
 });
 
+const draftViewerContainer = document.getElementById("manage-draft");
+const draftViewer = generateDraftViewer(draftViewerContainer, pubsub);
+draftViewer.build("draftViewer");
+pubsub.subscribe("draftViewer-discard-clicked", () => {
+    alert("scarta")
+});
+pubsub.subscribe("draftViewer-approve-clicked", () => {
+    alert("approvo")
+});
+pubsub.subscribe("draftViewer-back-clicked", () => {
+    location.href = "#dashboard";
+});
+
 const tabsContainer = document.getElementById("tabsContainer");
 const articleSidebarContainer = document.getElementById("articleSidebarContainer");
 const draftSidebarContainer = document.getElementById("draftSidebarContainer");
@@ -48,15 +65,19 @@ const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
 const draftSidebar = generateSidebar(draftSidebarContainer, pubsub);
 const usersSidebar = generateSidebar(usersSidebarContainer, pubsub);
 
-articleSidebar.build("articleSidebar", "Articoli", {"Ciao": "#ciao"}, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
+articleSidebar.build("articleSidebar", "Articoli", {"Ciao": ""}, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
 articleSidebar.render();
+pubsub.subscribe("articleSidebar-item-clicked", () => {
+    versionsTable.render(prova)
+    location.href = "#manage-versions";
+});
 
 draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContainer");
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
 pubsub.subscribe("draftSidebar-item-clicked", () => {
-    versionsTable.render(prova)
-    location.href = "#manage-versions";
+    draftViewer.render({title: "bozza1", author:"Pinangelo Mostarda", content:"<h2>cacca</h2>"});
+    location.href = "#manage-draft";
 });
 
 usersSidebar.build("usersSidebar", "Utenti", {"Utente1": ""}, "usersSearchbarContainer");
@@ -141,10 +162,10 @@ const articlesMangerContainer = document.getElementById("manage-articles");
 const articlesManager = generateArticlesManager(articlesMangerContainer, pubsub);
 articlesManager.build("articlesManager");
 articlesManager.render();
-pubsub.subscribe("articlesManager-save-pressed", article => {
+pubsub.subscribe("articlesManager-save-clicked", article => {
     console.log(article);
 });
-pubsub.subscribe("articlesManager-back-pressed", () => {
+pubsub.subscribe("articlesManager-back-clicked", () => {
     location.href = "#dashboard";
 });
 
@@ -152,10 +173,10 @@ const usersMangerContainer = document.getElementById("manage-users");
 const usersManager = generateUsersManager(usersMangerContainer, pubsub);
 usersManager.build("usersManager");
 usersManager.render({name: "ciao", surname: "ciao", class: "qintac", birthYear: 2006, email: "aaa@itis.eu", password: "aaa", isWriter:"true", isModerator: false});
-pubsub.subscribe("usersManager-save-pressed", user => {
+pubsub.subscribe("usersManager-save-clicked", user => {
     console.log(user);
 });
-pubsub.subscribe("usersManager-back-pressed", () => {
+pubsub.subscribe("usersManager-back-clicked", () => {
     location.href = "#dashboard";
 });
 

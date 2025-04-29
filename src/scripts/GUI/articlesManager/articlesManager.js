@@ -83,10 +83,10 @@ export const generateArticlesManager = (parentElement, pubsub) => {
             imagesLoader.render();
             
             document.getElementById(id + "SaveButton").onclick = () => {
-                pubsub.publish(id + "-save-pressed", manager.getContent());
+                pubsub.publish(id + "-save-clicked", manager.getContent());
             };
             document.getElementById(id + "BackButton").onclick = () => {
-                pubsub.publish(id + "-back-pressed");
+                pubsub.publish(id + "-back-clicked");
             };
             document.getElementById(id + "DeleteButton").onclick = () => {
                 pubsub.publish(id + "-delete-pressed");
