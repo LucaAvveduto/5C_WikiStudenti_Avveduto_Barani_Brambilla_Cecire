@@ -33,7 +33,7 @@
 				<div class="navbar-item">
 					<div class="field is-grouped">
 						<p class="control">
-							<button class="button is-light js-modal-trigger" data-target="personalInfoModal">
+							<button class="button is-light js-modal-trigger" data-target="">
 								<span class="icon">
 									<i class="fa-solid fa-user"></i>
 								</span>
@@ -85,103 +85,7 @@
 		</div>
 	</section>
 
-	<div class="modal" id="personalInfoModal">
-		<div class="modal-background"></div>
-		<div class="modal-card">
-			<header class="modal-card-head">
-				<p class="modal-card-title">Informazioni personali</p>
-				<button class="delete" aria-label="close"></button>
-			</header>
-			<section class="modal-card-body">
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Nome">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-user"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Cognome">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-user"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Classe">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-chalkboard"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="number" placeholder="Anno di nascita">
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-calendar"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email" disabled>
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p class="control has-icons-left">
-						<input class="input" type="password" placeholder="Password">
-						<span class="icon is-small is-left">
-							<i class="fas fa-lock"></i>
-						</span>
-					</p>
-				</div>
-				<div class="field">
-					<p>Desidero essere:</p>
-					<div class="checkboxes">
-						<label class="checkbox has-icons-left">
-							<input type="checkbox">
-							<span class="icon is-small is-left">
-								<i class="fa-solid fa-file-pen"></i>
-							</span>
-							<span>Scrittore</span>
-						</label>
-						<label class="checkbox has-icons-left">
-							<input type="checkbox">
-							<span class="icon is-small is-left">
-								<i class="fa-solid fa-user-pen"></i>
-							</span>
-							<span>Moderatore</span>
-						</label>
-					</div>
-				</div>
-			</section>
-			<footer class="modal-card-foot buttons is-centered">
-				<div class="buttons">
-					<button class="button is-danger">
-						<span class="icon">
-							<i class="fa-solid fa-xmark"></i>
-						</span>
-						<span>Annulla</span>
-					</button>
-					<button class="button is-link">
-						<span class="icon">
-							<i class="fa-solid fa-floppy-disk"></i>
-						</span>
-						<span>Salva</span>
-					</button>
-				</div>
-				<div class="container has-text-centered">
-					<p class="has-text-danger" id="registerError">Errore...</p>
-				</div>
-			</footer>
-		</div>
-	</div>
+	<div id="personalInfoContainer" class="modal blur"></div>
 
 	<footer class="footer">
 		<div class="content has-text-centered">

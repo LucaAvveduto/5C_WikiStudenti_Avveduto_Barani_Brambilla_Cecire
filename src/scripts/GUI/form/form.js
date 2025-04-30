@@ -55,6 +55,8 @@ export function createForm(parentElement, pubsub) {
                 const forms = document.querySelectorAll("div.form-group");
                 const keys = data[0].map(e => e["id"]);
                 forms.forEach((e,index) => {
+                    e.addEventListener("submit", e => e.preventDefault());
+                    e.onsubmit = () => preventDefault();
                     const node = e.querySelector(`input`);
                     values[keys[index]] = node.value;
                     node.value = "";

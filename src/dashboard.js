@@ -7,6 +7,7 @@ import { generateArticlesManager } from "./scripts/GUI/articlesManager/articlesM
 import { generateUsersManager } from "./scripts/GUI/usersManager/usersManager.js";
 import { generateVersionsTable } from "./scripts/GUI/versionsTable/versionsTable.js";
 import { generateDraftViewer } from "./scripts/GUI/draftViewer/draftViewer.js";
+import { createForm } from "./scripts/GUI/form/form.js";
 
 const pubsub = generatePubSub();
 
@@ -76,7 +77,7 @@ draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContain
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
 pubsub.subscribe("draftSidebar-item-clicked", () => {
-    draftViewer.render({title: "bozza1", author:"Pinangelo Mostarda", content:"<h2>cacca</h2>"});
+    draftViewer.render({title: "bozza1", author:"Pinangelo Mostarda", content:"<h2>cacca</h2><p>sium</p>"});
     location.href = "#manage-draft";
 });
 
@@ -180,15 +181,29 @@ pubsub.subscribe("usersManager-back-clicked", () => {
     location.href = "#dashboard";
 });
 
+const personalInfoContainer = document.getElementById("personalInfoContainer");
+const personalInfo = createForm(personalInfoContainer, pubsub);
+personalInfo.build([[
+    {
+        "id": "email",
+        "type": "mail"
+    },
+    {
+        "id": "password",
+        "type": "password"
+    },
+]]);
+personalInfo.render();
+
 // gestione modali di Bulma
 document.addEventListener("DOMContentLoaded", () => {
     // Functions to open and close a modal
-    function openModal(el) {
-        el.classList.add("is-active");
+    function openModal() {
+        personalInfoContainer.classList.add("is-active");
     }
 
-    function closeModal(el) {
-        el.classList.remove("is-active");
+    function closeModal() {
+        personalInfoContainer.classList.remove("is-active");
     }
 
     function closeAllModals() {

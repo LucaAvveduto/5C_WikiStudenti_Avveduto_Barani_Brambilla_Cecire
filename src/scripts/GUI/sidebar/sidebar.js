@@ -37,7 +37,7 @@ export const generateSidebar = (parentElement, pubsub) => {
             });
             html += "</ul></aside>";
             parentElement.innerHTML = html;
-            
+            console.log(document.querySelectorAll("." + id + "item"))
             document.querySelectorAll("." + id + "item").forEach(e => {
                 e.onclick = () => {
                     pubsub.publish(id + "-item-clicked");
@@ -59,6 +59,18 @@ export const generateSidebar = (parentElement, pubsub) => {
                 }
             });
             document.getElementById(id + "List").innerHTML = newHtml;
+            
+            document.querySelectorAll("." + id + "item").forEach(e => {
+                e.onclick = () => {
+                    pubsub.publish(id + "-item-clicked");
+                }
+            });
+
+            if (buttonInfo) {
+                document.getElementById(id + "Button").onclick = () => {
+                    pubsub.publish(id + "Button-clicked");
+                };
+            }
         },
         reset: () => {
             let newHtml = "";
@@ -67,6 +79,18 @@ export const generateSidebar = (parentElement, pubsub) => {
                 newHtml += '<li class="$IDitem"><a'.replace("$ID", id) + ((list[e]) ? (' href="'.replace("$ID", id) + list[e] + '"') : "") + '>' + e + '</a></li>';
             });
             document.getElementById(id + "List").innerHTML = newHtml;
+
+            document.querySelectorAll("." + id + "item").forEach(e => {
+                e.onclick = () => {
+                    pubsub.publish(id + "-item-clicked");
+                }
+            });
+
+            if (buttonInfo) {
+                document.getElementById(id + "Button").onclick = () => {
+                    pubsub.publish(id + "Button-clicked");
+                };
+            }
         },
         changeVisibility: (visibility) => {
             if (visibility) {
