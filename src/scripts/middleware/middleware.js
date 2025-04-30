@@ -105,7 +105,7 @@ export const generateMiddleware = () => {
       }
     },
 
-    modifyRoles: async (user, role) => {
+    modifyRoles: async (user, roles) => {
       try {
         const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
           "method": "POST",
@@ -115,7 +115,7 @@ export const generateMiddleware = () => {
           },
           "body": JSON.stringify({
             "user": user,
-            "role": role,
+            "role": roles,
             "action": "modifyRoles",
           }),
         });
