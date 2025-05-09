@@ -69,6 +69,11 @@
                         $response = addVersion($article, $version);
                         echo json_encode(["response" => $response]);
                     break;
+                    case "discardDraft":
+                        $id = trim(htmlspecialchars($input["id"]));
+                        $response = discardDraft($id);
+                        echo json_encode(["response" => $response]);
+                    break;
                 }
             }
             break;

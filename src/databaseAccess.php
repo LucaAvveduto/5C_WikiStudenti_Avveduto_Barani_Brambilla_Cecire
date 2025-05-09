@@ -205,6 +205,28 @@ function approveDraft($article) {
   }
 }
 
+function discardDraft($article) {
+  try {
+    $conn = connect();
+    $stmt = $conn->prepare(
+      "DELETE FROM Version WHERE id = ?;"
+    );
+  
+    $id = intval($article["id"]);
+    
+    $stmt->bind_param(
+      'i',
+      $id
+    );
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    return true;
+  } catch (Exception $e) {
+    return false;
+  }
+}
+
 function resetDoc($article, $version) {
   try {
     $conn = connect();
