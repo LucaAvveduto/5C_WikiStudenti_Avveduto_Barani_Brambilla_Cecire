@@ -9,57 +9,63 @@
 
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
-            $response = getDocs();
-            echo json_encode(["response"=>$response]);
+            if([$_GET["id"]]) {
+                $id = $_GET["id"];
+                $response = trim(htmlspecialchars(getDoc($id)));
+                echo json_encode(["response"=>$response]);
+            } else {
+                $response = getDocs();
+                echo json_encode(["response"=>$response]);
+            }
             break;
         case "POST":
             if($input["action"]) {
                 switch ($input["action"]) {
                     case "login":
-                        $body = $input["user"];
+                        $body = trim(htmlspecialchars($input["user"]));
                         $response = checkLogin($body["email"],$body["password"]);
                         echo json_encode(["response"=>$response]);
                         break;
                     case "register":
-                        $body = $input["user"];
+                        $body = trim(htmlspecialchars($input["user"]));
                         $res = addUser($body);
                         echo json_encode(["response" => $res]);
                         break;
                     case "deleteUser":
-                        $mail = $input["id"];
+                        $mail = trim(htmlspecialchars($input["id"]));
                         $response = deleteUser($mail);
                         echo json_encode(["response" => $response]);
                     break;
                     case "addArticle":
-                        $article = $input["article"];
+                        $article = trim(htmlspecialchars($input["article"]));
                         $response = addArticle($article);
                         echo json_encode(["response" => $response]);
                     break;
                     case "modifyUserData":
-                        $user = $input["user"];
+                        $user = trim(htmlspecialchars($input["user"]));
                         $response = modifyUserData($user);
                         echo json_encode(["response" => $response]);
                     break;
                     case "modifyRoles":
-                        $user = $input["user"];
-                        $role = $input["role"];
+                        $user = trim(htmlspecialchars($input["user"]));
+                        $role = trim(htmlspecialchars($input["role"]));
                         $response = modifyRoles($user);
                         echo json_encode(["response" => $response]);
                     break;
                     case "approveDraft":
-                        $article = $input["article"];
+                        $article = trim(htmlspecialchars($input["article"]));
                         $response = approveDraft($article);
                         echo json_encode(["response" => $response]);
                     break;
                     case "resetDoc":
-                        $doc = $input["doc"];
-                        $version = $input["version"];
+                        $doc = trim(htmlspecialchars($input["doc"]));
+                        $version = trim(htmlspecialchars($input["version"]));
                         $response = resetDoc($article, $version);
                         echo json_encode(["response" => $response]);
                     break;
                     case "addVersion":
-                        $doc = $input["doc"];
-                        $version = $input["version"];
+                        $doc = trim(htmlspecialchars($input["doc"]));
+                        $version = trim(htmlspecialchars($input["version"]));
                         $response = addVersion($article, $version);
                         echo json_encode(["response" => $response]);
                     break;

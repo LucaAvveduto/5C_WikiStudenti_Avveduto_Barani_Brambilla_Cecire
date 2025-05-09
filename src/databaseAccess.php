@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 function connect() {
   $servername = "localhost";
   $username = "root";
@@ -274,4 +276,13 @@ function getDocs() {
   $sql = $conn -> query("SELECT * FROM Article");
   $conn->close();
   return $sql;
+}
+
+function getDoc($title) {
+  $conn = connect();
+  $stmt = $conn->prepare("SELECT * FROM User WHERE Title=?");
+  $stmt->bind_param("s", $title);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  return $result;
 }
