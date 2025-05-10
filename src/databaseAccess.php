@@ -80,20 +80,36 @@ function addArticle($params) {
   try {
     $conn = connect();
     $conn -> query("INSERT INTO Article VALUES()");
-    $id = $conn -> query("SELECT * FROM Article ORDER BY id DESC LIMIT 1");
+    $id_res = $conn -> query("SELECT * FROM Article ORDER BY id DESC LIMIT 1");
+    $id = $id_res->fetch_assoc();
+
+    $stmt = $conn -> prepare(
+      "INSERT INTO Image(path, caption) VALUES (?, ?)"
+    );
+    $niente = "";
+    $stmt->bind_param("ss", $params["mainImageLink"], $niente);
+    $stmt->execute();
+
+    $stmt = $conn -> prepare(
+      "select Id from Image where Path = ?"
+    );
+    $stmt->bind_param("s", $params["mainImageLink"]);
+    $stmt->execute();
+    $imageId = $stmt->get_result()->fetch_assoc()["Id"];
+
     $stmt = $conn -> prepare(
       "INSERT INTO Version(article, Title, Text, Abstract, Approved, MainImage) VALUES (?, ?, ?, ?, ?, ?)"
     );
-
-    $article = $id;
+    
+    $article = intval($id["Id"]);
     $title = $params["title"];
     $text = $params["text"];
     $abstract = $params["abstract"];
     $approved = 0;
-    $mainImg = null;
+    $mainImg = $imageId;
 
     $stmt->bind_param(
-      'isssii',
+      'isssis',
       $article,
       $title,
       $text,
@@ -103,6 +119,8 @@ function addArticle($params) {
     );
 
     $stmt->execute();
+    $stmt->get_result();
+
     $stmt->close();
     $conn->close();
     return true;
@@ -302,7 +320,7 @@ function getDocs() {
 
 function getDoc($title) {
   $conn = connect();
-  $stmt = $conn->prepare("SELECT * FROM User WHERE Title=?");
+  $stmt = $conn->prepare("SELECT * FROM Article WHERE Title=?");
   $stmt->bind_param("s", $title);
   $stmt->execute();
   $result = $stmt->get_result();

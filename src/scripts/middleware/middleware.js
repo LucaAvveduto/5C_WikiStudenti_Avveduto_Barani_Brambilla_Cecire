@@ -3,7 +3,7 @@ export const generateMiddleware = () => {
     login: async (user) => {
       //login utente
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
             "headers": {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ export const generateMiddleware = () => {
     register: async (user) => {
       //registrazione utente
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
             "headers": {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ export const generateMiddleware = () => {
     deleteUser: async(id) => {
       //rimozione utente
       try {
-        const resp = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const resp = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
             "method": "POST",
             "headers": {
               'Accept': 'application/json',
@@ -67,7 +67,7 @@ export const generateMiddleware = () => {
     addArticle: async(article) => {
       //aggiunta articolo
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "headers": {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ export const generateMiddleware = () => {
 
     modifyUserData: async (user) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -107,7 +107,7 @@ export const generateMiddleware = () => {
 
     modifyRoles: async (user, roles) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -128,7 +128,7 @@ export const generateMiddleware = () => {
 
     approveDraft: async(article) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -148,7 +148,7 @@ export const generateMiddleware = () => {
 
     discardDraft: async(article) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -168,7 +168,7 @@ export const generateMiddleware = () => {
 
     resetDoc: async (doc, version) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -189,7 +189,7 @@ export const generateMiddleware = () => {
 
     addVersion: async(doc, version) => {
       try {
-        const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", {
+        const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
           "headers": {
             "Accept": "application/json",
@@ -210,7 +210,7 @@ export const generateMiddleware = () => {
     
     getDocs: async() => {
       try {
-          const response = await fetch("http://localhost:8080/src/wikistudentiAPI.php", { 
+          const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", { 
               "method": "GET",
               "headers": {
                   "Content-Type": "application/json",

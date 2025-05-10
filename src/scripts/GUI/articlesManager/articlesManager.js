@@ -66,22 +66,6 @@ export const generateArticlesManager = (parentElement, pubsub) => {
                         </div>`.replaceAll("$ID", id);
             parentElement.innerHTML = html;
             
-            const mdFileContainer = document.getElementById("mdFileContainer");
-            const mainImageLoaderContainer = document.getElementById("mainImageLoaderContainer");
-            const imagesLoaderContainer = document.getElementById("imagesLoaderContainer");
-
-            mdFileLoader = generateFileLoader(mdFileContainer, pubsub);
-            mdFileLoader.build("mdFileLoader", {icon: '<i class="fa-solid fa-file-arrow-up"></i>', text: "Scegli il file MarkDown (.md)", multiple: false});
-            mdFileLoader.render();
-
-            mainImageLoader = generateFileLoader(mainImageLoaderContainer, pubsub);
-            mainImageLoader.build("mainImageLoader", {icon: '<i class="fa-solid fa-image"></i>', text: "Scegli l'immagine principale", multiple: false});
-            mainImageLoader.render();
-
-            imagesLoader = generateFileLoader(imagesLoaderContainer, pubsub);
-            imagesLoader.build("imageLoader", {icon: '<i class="fa-solid fa-images"></i>', text: "Scegli le altre immagini", multiple: true});
-            imagesLoader.render();
-            
             document.getElementById(id + "SaveButton").onclick = () => {
                 pubsub.publish(id + "-save-clicked", manager.getContent());
             };
@@ -96,13 +80,10 @@ export const generateArticlesManager = (parentElement, pubsub) => {
             return {
                 title: document.getElementById("title").value,
                 abstract: document.getElementById("abstract").value,
-                content: document.getElementById("content").value,
+                text: document.getElementById("content").value,
                 links: document.getElementById("links").value,
                 mainImageLink: document.getElementById("mainImageLink").value,
                 imagesLinks: document.getElementById("imagesLinks").value,
-                mdFile: mdFileLoader.getContent(),
-                mainImage: mainImageLoader.getContent(),
-                images: imagesLoader.getContent()
             };
         },
         setContent: (article) => {

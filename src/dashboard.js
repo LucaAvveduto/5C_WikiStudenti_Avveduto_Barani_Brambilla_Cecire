@@ -8,8 +8,11 @@ import { generateUsersManager } from "./scripts/GUI/usersManager/usersManager.js
 import { generateVersionsTable } from "./scripts/GUI/versionsTable/versionsTable.js";
 import { generateDraftViewer } from "./scripts/GUI/draftViewer/draftViewer.js";
 import { createForm } from "./scripts/GUI/form/form.js";
+import { generateMiddleware } from "./scripts/middleware/middleware.js";
 
 const pubsub = generatePubSub();
+
+const middleware = generateMiddleware();
 
 const pageContainer = document.getElementById("pageContainer");
 generateNavigator(pageContainer);
@@ -163,8 +166,9 @@ const articlesMangerContainer = document.getElementById("manage-articles");
 const articlesManager = generateArticlesManager(articlesMangerContainer, pubsub);
 articlesManager.build("articlesManager");
 articlesManager.render();
-pubsub.subscribe("articlesManager-save-clicked", article => {
-    console.log(article);
+pubsub.subscribe("articlesManager-save-clicked", async article => {
+    console.log(article)
+    console.log(await middleware.addArticle(article));
 });
 pubsub.subscribe("articlesManager-back-clicked", () => {
     location.href = "#dashboard";

@@ -9,7 +9,7 @@
 
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
-            if([$_GET["id"]]) {
+            if(isset($_GET["id"]) && !is_null($_GET["id"]) && empty($_GET["id"])) {
                 $id = $_GET["id"];
                 $response = trim(htmlspecialchars(getDoc($id)));
                 echo json_encode(["response"=>$response]);
@@ -37,7 +37,7 @@
                         echo json_encode(["response" => $response]);
                     break;
                     case "addArticle":
-                        $article = trim(htmlspecialchars($input["article"]));
+                        $article = $input["article"];
                         $response = addArticle($article);
                         echo json_encode(["response" => $response]);
                     break;
