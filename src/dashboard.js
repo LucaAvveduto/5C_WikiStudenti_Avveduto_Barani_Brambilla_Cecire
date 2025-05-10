@@ -9,6 +9,7 @@ import { generateVersionsTable } from "./scripts/GUI/versionsTable/versionsTable
 import { generateDraftViewer } from "./scripts/GUI/draftViewer/draftViewer.js";
 import { createForm } from "./scripts/GUI/form/form.js";
 import { generateMiddleware } from "./scripts/middleware/middleware.js";
+import { mailer } from "src\mailer.php";
 
 const pubsub = generatePubSub();
 
@@ -255,4 +256,41 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAllModals();
         }
     });
+});
+
+function sendEmail(action, email) {
+    const emailData = {
+        action: action,
+        email: email
+    };
+
+    fetch('src/mailer.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Email sent successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error sending email:', error);
+    });
+}
+
+pubsub.subscribe("usersManager-save-clicked", user => {
+    console.log(user);
+    sendEmail('registration', user.email); // Send email on user registration
+});
+
+pubsub.subscribe("draftViewer-approve-clicked", () => {
+    const moderatorEmail = "moderator@example.com"; // Replace with actual moderator email
+    sendEmail('draftApproval', moderatorEmail); // Send email on draft approval
 });
