@@ -90,12 +90,13 @@ pubsub.subscribe("login", () => {
     form.render();
 });
 
-pubsub.subscribe("log",(values) => {
-    middleware.login(values);
+pubsub.subscribe("log",async(values) => {
+    await middleware.login(values);
 });
 
-pubsub.subscribe("reg",(values) => {
-    middleware.register(values);
+pubsub.subscribe("reg", async(values) => {
+    await middleware.register(values);
+    await middleware.sendMail("registration", values.email);
 });
 
 

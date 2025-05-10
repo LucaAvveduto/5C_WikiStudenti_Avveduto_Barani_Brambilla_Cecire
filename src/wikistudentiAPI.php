@@ -35,12 +35,12 @@
             if($input["action"]) {
                 switch ($input["action"]) {
                     case "login":
-                        $body = trim(htmlspecialchars($input["user"]));
-                        $response = checkLogin($body["email"],$body["password"]);
+                        $body = $input["user"];
+                        $response = checkLogin(trim(htmlspecialchars($body["email"])),trim(htmlspecialchars($body["password"])));
                         echo json_encode(["response"=>$response]);
                         break;
                     case "register":
-                        $body = trim(htmlspecialchars($input["user"]));
+                        $body = $input["user"];
                         $res = addUser($body);
                         echo json_encode(["response" => $res]);
                         break;
@@ -88,7 +88,7 @@
                         echo json_encode(["response" => $response]);
                     break;
                     case "registration":
-                        $email = $input("email");
+                        $email = $input["email"];
                         sendRegistrationEmail($email);
                         sendCandidatureEmail("avvedutoluca@itis-molinari.eu");
                         echo json_encode(["response" => true]);

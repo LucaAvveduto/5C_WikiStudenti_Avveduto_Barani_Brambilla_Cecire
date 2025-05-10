@@ -4,7 +4,7 @@ define('SMTP_USER', 'spectral617@gmail.com');
 define('SMTP_PASS', 'pippo1234-');
 define('SMTP_PORT', 587); 
 define('FROM_EMAIL', 'brambillagianluca@itis-molinari.eu');
-define('FROM_NAME', 'Gianluca');
+define('FROM_NAME', 'Wikings');
 
 function sendEmail($to, $subject, $message) {
     $headers = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
