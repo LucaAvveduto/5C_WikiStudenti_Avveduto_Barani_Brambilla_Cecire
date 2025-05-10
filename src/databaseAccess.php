@@ -313,14 +313,30 @@ function addVersion($article, $version) {
 
 function getDocs() {
   $conn = connect();
-  $sql = $conn -> query("SELECT * FROM Article");
+  $sql = $conn -> query("SELECT * FROM Article WHERE approved=1");
   $conn->close();
   return $sql;
 }
 
 function getDoc($title) {
   $conn = connect();
-  $stmt = $conn->prepare("SELECT * FROM Article WHERE Title=?");
+  $stmt = $conn->prepare("SELECT * FROM Article WHERE Title=? AND approved=1");
+  $stmt->bind_param("s", $title);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  return $result;
+}
+
+function getDrafts() {
+  $conn = connect();
+  $sql = $conn -> query("SELECT * FROM Article WHERE approved=0");
+  $conn->close();
+  return $sql;
+}
+
+function getDraft($title) {
+  $conn = connect();
+  $stmt = $conn->prepare("SELECT * FROM Article WHERE Title=? and approved=0");
   $stmt->bind_param("s", $title);
   $stmt->execute();
   $result = $stmt->get_result();

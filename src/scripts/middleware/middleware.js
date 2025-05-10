@@ -210,7 +210,52 @@ export const generateMiddleware = () => {
     
     getDocs: async() => {
       try {
-          const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", { 
+          const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php?act='docs'", { 
+              "method": "GET",
+              "headers": {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          return e;
+      }
+    },
+
+    getDoc: async(id) => {
+      try {
+          const response = await fetch(`http://localhost:3000/src/wikistudentiAPI.php?act='docs'&doc=${id}`, { 
+              "method": "GET",
+              "headers": {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          return e;
+      }
+    },
+
+    getDrafts: async() => {
+      try {
+          const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php?act='drafts'", { 
+              "method": "GET",
+              "headers": {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          return e;
+      }
+    },
+
+    getDraft: async(id) => {
+      try {
+          const response = await fetch(`http://localhost:3000/src/wikistudentiAPI.php?act='drafts'&draft=${id}`, { 
               "method": "GET",
               "headers": {
                   "Content-Type": "application/json",

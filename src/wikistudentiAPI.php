@@ -9,13 +9,25 @@
 
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
-            if(isset($_GET["id"]) && !is_null($_GET["id"]) && empty($_GET["id"])) {
-                $id = $_GET["id"];
-                $response = trim(htmlspecialchars(getDoc($id)));
-                echo json_encode(["response"=>$response]);
-            } else {
-                $response = getDocs();
-                echo json_encode(["response"=>$response]);
+            if ($_GET["act"]) switch (trim(htmlspecialchars($_GET["act"]))) {
+                case "docs":
+                    if($_GET["doc"]) {
+                        $response = trim(htmlspecialchars(getDoc($_GET["doc"])));
+                        echo json_encode(["response"=>$response]);
+                    }else {
+                        $response = getDocs();
+                        echo json_encode(["response"=>$response]);
+                    }
+                break;
+                case "drafts":
+                    if($_GET["draft"]) {
+                        $response = trim(htmlspecialchars(getDraft($_GET["draft"])));
+                        echo json_encode(["response"=>$response]);
+                    }else {
+                        $response = getDrafts();
+                        echo json_encode(["response"=>$response]);
+                    }
+                break;
             }
             break;
         case "POST":
