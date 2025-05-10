@@ -1,5 +1,6 @@
 <?php
     require("databaseAccess.php");
+    require("mailer.php");
 
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
@@ -85,6 +86,17 @@
                         $id = trim(htmlspecialchars($input["id"]));
                         $response = discardDraft($id);
                         echo json_encode(["response" => $response]);
+                    break;
+                    case "registration":
+                        $email = $input("email");
+                        sendRegistrationEmail($email);
+                        sendCandidatureEmail("avvedutoluca@itis-molinari.eu");
+                        echo json_encode(["response" => true]);
+                    break;
+                    case "draftApproval":
+                        $email = $input("email");
+                        sendDraftApprovalEmail($email);
+                        echo json_encode(["response" => true]);
                     break;
                 }
             }

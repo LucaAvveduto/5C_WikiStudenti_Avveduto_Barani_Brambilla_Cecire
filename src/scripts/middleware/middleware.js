@@ -267,5 +267,20 @@ export const generateMiddleware = () => {
           return e;
       }
     },
-  };
+
+    sendMail: async(action, target) => {
+      const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
+          "method": "POST",
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          "body": JSON.stringify({
+            "action": action,
+            "email": target,
+          }),
+        });
+        return await response.json();
+      }
+    };
 };
