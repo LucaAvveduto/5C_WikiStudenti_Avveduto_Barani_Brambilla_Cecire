@@ -28,7 +28,7 @@ export const generateDraftViewer = (parentElement, pubsub) => {
                         <div id="$IDContent"></div>`.replaceAll("$ID", id).replace("$TITLE", inputDraft.title).replace("$AUTHOR", inputDraft.author);
             parentElement.innerHTML = html;
 
-            document.getElementById(id + "Content").innerHTML = inputDraft.content;
+            document.getElementById(id + "Content").innerHTML = inputDraft.text;
             
             document.getElementById(id + "BackButton").onclick = () => {
                 pubsub.publish(id + "-back-clicked");
