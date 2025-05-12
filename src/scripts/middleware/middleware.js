@@ -187,7 +187,7 @@ export const generateMiddleware = () => {
       }
     },
 
-    addVersion: async(doc, version) => {
+    addVersion: async(author, doc, version) => {
       try {
         const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {
           "method": "POST",
@@ -198,6 +198,7 @@ export const generateMiddleware = () => {
           "body": JSON.stringify({
             "doc": doc,
             "version": version,
+            "author": author,
             "action": "addVersion",
           }),
         });

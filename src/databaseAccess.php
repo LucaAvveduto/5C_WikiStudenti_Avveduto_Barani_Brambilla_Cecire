@@ -269,7 +269,7 @@ function resetDoc($article, $version) {
   }
 }
 
-function addVersion($article, $version) {
+function addVersion($author, $article, $version) {
   try {
     $conn = connect();
 
@@ -303,6 +303,13 @@ function addVersion($article, $version) {
       $mainImg,
     );
     $stmt->execute();
+
+    $stmt = $conn->prepare(
+      "INSERT INTO userinteractsversion VALUES(?, ?)"
+    );
+
+    $stmt -> bind_param("ss", $author, $version);
+    $stmt->execute();
     $stmt->close();
     $conn->close();
     return true;
@@ -329,7 +336,7 @@ function getDoc($title) {
 
 function getDrafts() {
   $conn = connect();
-  $sql = $conn -> query("SELECT * FROM version WHERE approved=0");
+  $sql = $conn -> query("SELECT * FROM version JOIN  WHERE approved=0");
   $res = array();
 
   while ($row = $sql->fetch_assoc()) {

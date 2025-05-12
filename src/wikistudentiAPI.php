@@ -74,13 +74,14 @@
                     case "resetDoc":
                         $doc = trim(htmlspecialchars($input["doc"]));
                         $version = trim(htmlspecialchars($input["version"]));
-                        $response = resetDoc($article, $version);
+                        $response = resetDoc($author ,$article, $version);
                         echo json_encode(["response" => $response]);
                     break;
                     case "addVersion":
                         $doc = trim(htmlspecialchars($input["doc"]));
                         $version = trim(htmlspecialchars($input["version"]));
-                        $response = addVersion($article, $version);
+                        $author = trim(htmlspecialchars($input["author"]));
+                        $response = addVersion($author, $article, $version);
                         echo json_encode(["response" => $response]);
                     break;
                     case "discardDraft":
