@@ -95,7 +95,7 @@ draftSidebar.build("draftSidebar", "Bozze", drafts, "draftSearchbarContainer");
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
 pubsub.subscribe("draftSidebar-item-clicked", title => {
-    draftViewer.render(drafts[title]);
+    draftViewer.render(remoteDrafts.find(e => e.title === title));
     location.href = "#manage-draft";
 });
 
