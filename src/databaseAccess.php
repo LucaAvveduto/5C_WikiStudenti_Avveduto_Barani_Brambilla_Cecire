@@ -321,8 +321,14 @@ function addVersion($author, $article, $version) {
 function getDocs() {
   $conn = connect();
   $sql = $conn -> query("SELECT * FROM version WHERE approved=1");
+  $res = array();
+
+  while ($row = $sql->fetch_assoc()) {
+    $res[] = $row;
+  }
+
   $conn->close();
-  return $sql;
+  return $res;
 }
 
 function getDoc($title) {
