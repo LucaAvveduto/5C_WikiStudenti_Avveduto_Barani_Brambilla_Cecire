@@ -12,6 +12,10 @@
         case "GET":
             if (!isset($_GET["act"])) return;
             if ($_GET["act"]) switch (trim(htmlspecialchars($_GET["act"]))) {
+                case "users":
+                    $response = getUsers();
+                    echo json_encode(["response"=>$response]);
+                break;
                 case "docs":
                     if(isset($_GET["doc"])) {
                         $response = trim(htmlspecialchars(getDoc($_GET["doc"])));

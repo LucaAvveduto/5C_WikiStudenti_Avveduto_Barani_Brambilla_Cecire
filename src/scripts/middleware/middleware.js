@@ -255,6 +255,22 @@ export const generateMiddleware = () => {
       }
     },
 
+    getUsers: async() => {
+      try {
+          const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php?act=users", { 
+              "method": "GET",
+              "headers": {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          return e;
+      }
+    },
+
+
     getDraft: async(id) => {
       try {
           const response = await fetch(`http://localhost:3000/src/wikistudentiAPI.php?act='drafts'&draft=${id}`, { 
@@ -269,6 +285,22 @@ export const generateMiddleware = () => {
           return e;
       }
     },
+
+    getVersionsByDoc: async(article, id) => {
+      try {
+          const response = await fetch(`http://localhost:8080/src/wikistudentiAPI.php?act=versions&article=${id}`, { 
+              "method": "GET",
+              "headers": {
+                  "Content-Type": "application/json",
+              },
+          });
+          const data = await response.json(); 
+          return data; 
+      } catch (e) {
+          return e;
+      }
+    },
+
 
     sendMail: async(action, target) => {
       const response = await fetch("http://localhost:3000/src/wikistudentiAPI.php", {

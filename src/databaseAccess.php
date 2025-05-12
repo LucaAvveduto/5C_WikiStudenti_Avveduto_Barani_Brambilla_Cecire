@@ -331,6 +331,19 @@ function getDocs() {
   return $res;
 }
 
+function getUsers() {
+  $conn = connect();
+  $sql = $conn -> query("SELECT * FROM user");
+  $res = array();
+
+  while ($row = $sql->fetch_assoc()) {
+    $res[] = $row;
+  }
+
+  $conn->close();
+  return $res;
+}
+
 function getDoc($title) {
   $conn = connect();
   $stmt = $conn->prepare("SELECT * FROM version WHERE Title=? AND approved=1");
