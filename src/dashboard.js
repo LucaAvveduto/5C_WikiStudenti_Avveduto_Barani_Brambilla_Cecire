@@ -104,7 +104,6 @@ const drafts = {};
 remoteDrafts.forEach(e => {
     drafts[e.title] = "";
 });
-console.log(remoteDrafts);
 
 draftSidebar.build("draftSidebar", "Bozze", drafts, "draftSearchbarContainer");
 draftSidebar.render();
@@ -114,10 +113,25 @@ pubsub.subscribe("draftSidebar-item-clicked", title => {
     location.href = "#manage-draft";
 });
 
-usersSidebar.build("usersSidebar", "Utenti", {"Utente1": ""}, "usersSearchbarContainer");
+const remoteUsers = (await middleware.getUsers()).response;
+
+remoteUsers.forEach(dict => {
+    Object.keys(dict).forEach(k => {
+        dict[k.toLowerCase()] = dict[k];
+        delete dict[k];
+    });
+});
+
+const users = {};
+remoteUsers.forEach(e => {
+    users[e.email] = "";
+});
+
+usersSidebar.build("usersSidebar", "Utenti", users, "usersSearchbarContainer");
 usersSidebar.render();
 usersSidebar.changeVisibility(false);
-pubsub.subscribe("usersSidebar-item-clicked", () => {
+pubsub.subscribe("usersSidebar-item-clicked", email => {
+    usersManager.render(remoteUsers.find(e => e.email === email));
     location.href = "#manage-users";
 });
 
@@ -213,6 +227,9 @@ pubsub.subscribe("usersManager-save-clicked", user => {
 });
 pubsub.subscribe("usersManager-back-clicked", () => {
     location.href = "#dashboard";
+});
+pubsub.subscribe("usersManager-delete-clicked", async email => {console.log(email)
+    console.log(await middleware.deleteUser(email));
 });
 
 const personalInfoContainer = document.getElementById("personalInfoContainer");

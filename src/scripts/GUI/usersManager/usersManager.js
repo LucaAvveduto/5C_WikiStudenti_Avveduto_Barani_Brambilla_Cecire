@@ -106,17 +106,17 @@ export const generateUsersManager = (parentElement, pubsub) => {
                 pubsub.publish(id + "-back-clicked");
             };
             document.getElementById(id + "DeleteButton").onclick = () => {
-                pubsub.publish(id + "-delete-clicked");
+                pubsub.publish(id + "-delete-clicked", inputUser.email);
             };
-
+            console.log(user)
             document.getElementById("name").value = user.name;
             document.getElementById("surname").value = user.surname;
             document.getElementById("class").value = user.class;
             document.getElementById("birthYear").value = user.birthYear;
             document.getElementById("email").value = user.email;
             document.getElementById("password").value = user.password;
-            document.getElementById("isWriter").checked = user.isWriter;
-            document.getElementById("isModerator").checked = user.isModerator;
+            document.getElementById("isWriter").checked = Boolean(parseInt(user.iseditor));
+            document.getElementById("isModerator").checked = Boolean(parseInt(user.ismoderator));
         },
         getContent: () => {
             return {

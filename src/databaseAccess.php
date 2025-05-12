@@ -67,7 +67,7 @@ function deleteUser($mail)
 {  
   try {
     $conn = connect();
-    $stmt = $conn->prepare("DELETE * FROM User WHERE Email=?");
+    $stmt = $conn->prepare("DELETE * FROM user WHERE Email=?");
     $stmt->bind_param("s", $mail);
     $stmt->execute();
     return true;
