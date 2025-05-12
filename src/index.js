@@ -91,11 +91,13 @@ pubsub.subscribe("login", () => {
 });
 
 pubsub.subscribe("log",async(values) => {
-    await middleware.login(values);
+    const response = await middleware.login(values);
+    if(response.response) sessionStorage.setItem("logged", values);
 });
 
 pubsub.subscribe("reg", async(values) => {
     await middleware.register(values);
+    await middleware.login(values);
     await middleware.sendMail("registration", values.email);
 });
 
