@@ -76,11 +76,26 @@ pubsub.subscribe("articleSidebar-item-clicked", () => {
     location.href = "#manage-versions";
 });
 
-draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContainer");
+const remoteDrafts = (await middleware.getDrafts()).response;
+
+remoteDrafts.forEach(dict => {
+    Object.keys(dict).forEach(k => {
+        dict[k.toLowerCase()] = dict[k];
+        delete dict[k];
+    });
+});
+
+const drafts = {};
+remoteDrafts.forEach(e => {
+    drafts[e.title] = "";
+});
+console.log(remoteDrafts);
+
+draftSidebar.build("draftSidebar", "Bozze", drafts, "draftSearchbarContainer");
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
-pubsub.subscribe("draftSidebar-item-clicked", () => {
-    draftViewer.render();
+pubsub.subscribe("draftSidebar-item-clicked", title => {
+    draftViewer.render(drafts[title]);
     location.href = "#manage-draft";
 });
 

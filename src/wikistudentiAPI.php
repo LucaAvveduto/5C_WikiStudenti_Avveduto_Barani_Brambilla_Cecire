@@ -10,6 +10,7 @@
 
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":
+            if (!isset($_GET["act"])) return;
             if ($_GET["act"]) switch (trim(htmlspecialchars($_GET["act"]))) {
                 case "docs":
                     if($_GET["doc"]) {
@@ -21,7 +22,7 @@
                     }
                 break;
                 case "drafts":
-                    if($_GET["draft"]) {
+                    if(isset($_GET["draft"])) {
                         $response = trim(htmlspecialchars(getDraft($_GET["draft"])));
                         echo json_encode(["response"=>$response]);
                     }else {
