@@ -13,7 +13,7 @@
             if (!isset($_GET["act"])) return;
             if ($_GET["act"]) switch (trim(htmlspecialchars($_GET["act"]))) {
                 case "docs":
-                    if($_GET["doc"]) {
+                    if(isset($_GET["doc"])) {
                         $response = trim(htmlspecialchars(getDoc($_GET["doc"])));
                         echo json_encode(["response"=>$response]);
                     }else {

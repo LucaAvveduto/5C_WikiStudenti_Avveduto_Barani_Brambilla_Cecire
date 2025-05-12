@@ -342,7 +342,7 @@ function getDoc($title) {
 
 function getDrafts() {
   $conn = connect();
-  $sql = $conn -> query("SELECT * FROM version JOIN  WHERE approved=0");
+  $sql = $conn -> query("SELECT * FROM version WHERE approved=0");
   $res = array();
 
   while ($row = $sql->fetch_assoc()) {

@@ -69,7 +69,22 @@ const articleSidebar = generateSidebar(articleSidebarContainer, pubsub);
 const draftSidebar = generateSidebar(draftSidebarContainer, pubsub);
 const usersSidebar = generateSidebar(usersSidebarContainer, pubsub);
 
-articleSidebar.build("articleSidebar", "Articoli", {"Ciao": ""}, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
+const remoteDocs = (await middleware.getDocs()).response;
+console.log(remoteDocs);
+
+remoteDocs.forEach(dict => {
+    Object.keys(dict).forEach(k => {
+        dict[k.toLowerCase()] = dict[k];
+        delete dict[k];
+    });
+});
+
+const docs = {};
+remoteDocs.forEach(e => {
+    docs[e.title] = "";
+});
+
+articleSidebar.build("articleSidebar", "Articoli", docs, "articleSearchbarContainer", {icon: '<i class="fa-solid fa-plus"></i>', text: "Crea"});
 articleSidebar.render();
 pubsub.subscribe("articleSidebar-item-clicked", () => {
     versionsTable.render(prova)
