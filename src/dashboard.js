@@ -80,7 +80,7 @@ draftSidebar.build("draftSidebar", "Bozze", {"Ciao": ""}, "draftSearchbarContain
 draftSidebar.render();
 draftSidebar.changeVisibility(false);
 pubsub.subscribe("draftSidebar-item-clicked", () => {
-    draftViewer.render({title: "bozza1", author:"Pinangelo Mostarda", content:"<h2>cacca</h2><p>sium</p>"});
+    draftViewer.render();
     location.href = "#manage-draft";
 });
 
